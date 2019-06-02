@@ -4,7 +4,8 @@ import campfire from "../images/undraw_campfire.svg";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Search from "./Search";
-import WeatherCard from "./Card";
+import WeatherCard from "./WeatherCard";
+
 
 const styles = theme => ({
   root: {
@@ -23,12 +24,14 @@ const styles = theme => ({
 });
 
 function Hero(props) {
+
   const { classes } = props;
+
   return (
     <div className={classes.bg}>
       <Grid
-        className={classes.root}
         container
+        className={classes.root}
         direction="row"
         justify="center"
         alignItems="center"
