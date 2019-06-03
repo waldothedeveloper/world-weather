@@ -3,7 +3,9 @@ import AppBar from "./AppBar/AppBar";
 import Hero from "./Hero/Hero";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import axios from "axios";
+import Clock from "./Utils/Clock";
 
+// Context for the API
 export const Store = React.createContext();
 export const Errors = React.createContext();
 export const Loading = React.createContext();
@@ -35,17 +37,18 @@ function App() {
   }, [url]);
 
   return (
-    <div>
+    <React.Fragment>
       <Store.Provider value={exampleCities}>
         <Loading.Provider value={isLoading}>
           <Errors.Provider value={isError}>
             <CssBaseline />
             <AppBar />
             <Hero />
+            <Clock />
           </Errors.Provider>
         </Loading.Provider>
       </Store.Provider>
-    </div>
+    </React.Fragment>
   );
 }
 

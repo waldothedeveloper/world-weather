@@ -44,7 +44,7 @@ function WeatherCard() {
   const isLoading = useContext(Loading);
   // console.log(`Cities retrieved from OpenWeatherMap`, exCities)
   // console.log(`API request errors? `, APIErrors)
-  console.log("loading?", isLoading);
+  // console.log("loading?", isLoading);
 
   const tutorialSteps = exCities;
   const classes = useStyles();
