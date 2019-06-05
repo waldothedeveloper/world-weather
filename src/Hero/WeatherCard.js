@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import CardMedia from "@material-ui/core/CardMedia";
 import { Store, Errors, Loading } from "../App";
+import Clock from "../Utils/Clock";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -115,6 +116,9 @@ function WeatherCard() {
               Wind Speed:{" "}
               {exCities.length > 0 && exCities[activeStep].wind.speed}
             </Typography>
+          </CardContent>
+          <CardContent>
+            <Clock activeStep={activeStep} />
           </CardContent>
           <CardActions>
             <MobileStepper

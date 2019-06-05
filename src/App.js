@@ -44,7 +44,7 @@ function App() {
             <CssBaseline />
             <AppBar />
             <Hero />
-            <Clock cityNames={exampleCities} />
+            <Clock />
           </Errors.Provider>
         </Loading.Provider>
       </Store.Provider>

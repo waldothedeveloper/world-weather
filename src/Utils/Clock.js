@@ -1,50 +1,39 @@
-import React, { useState, useEffect } from "react";
-import { findTimeZone, getZonedTime } from "timezone-support";
+import React, { useState, useEffect, useContext } from "react";
 import Typography from "@material-ui/core/Typography";
-
-// const timeZon = [
-//   "Asia/Hong_Kong",
-//   "America/Havana",
-//   "Europe/Berlin",
-//   "Asia/Singapore",
-//   "Europe/Moscow"
-// ];
+import * as momentTZ from "moment-timezone";
+import { Store } from "../App";
 
 //To get the full timezone object of each sample city
-
 export default function Clock(props) {
-  // console.log(props.cityNames);
+  const cities = useContext(Store);
+  const cityNames = [];
 
-  const cities = [];
+  cities.forEach(city => {
+    if (city.name === "Hong Kong") {
+      cityNames.push("Asia/Hong_Kong");
+    }
 
-  if (props.cityNames !== "undefined") {
-    props.cityNames.map(city => {
-      if (city.name === "Hong Kong") {
-        cities.push("Asia/Hong_Kong");
-      }
+    if (city.name === "Havana") {
+      cityNames.push("America/Havana");
+    }
 
-      if (city.name === "Havana") {
-        cities.push("America/Havana");
-      }
+    if (city.name === "Berlin") {
+      cityNames.push("Europe/Berlin");
+    }
 
-      if (city.name === "Berlin") {
-        cities.push("Europe/Berlin");
-      }
+    if (city.name === "Singapore") {
+      cityNames.push("Asia/Singapore");
+    }
 
-      if (city.name === "Singapore") {
-        cities.push("Asia/Singapore");
-      }
-
-      if (city.name === "Moscow") {
-        cities.push("Europe/Moscow");
-      }
-      return null;
-    });
-  }
+    if (city.name === "Moscow") {
+      cityNames.push("Europe/Moscow");
+    }
+  });
 
   const CitiesClock = () =>
-    cities.map(city => {
-      return getZonedTime(new Date(), findTimeZone(city));
+    cityNames.length > 0 &&
+    cityNames.map(city => {
+      return momentTZ.tz(new Date(), city).format("h:mm:ss A");
     });
 
   const [date, setDate] = useState([]);
@@ -62,11 +51,7 @@ export default function Clock(props) {
 
   return (
     <React.Fragment>
-      {date.length > 0 && (
-        <Typography variant="h4">
-          {date[0].hours}:{date[0].minutes}:{date[0].seconds} PM
-        </Typography>
-      )}
+      <Typography variant="h4">{date[props.activeStep]}</Typography>
     </React.Fragment>
   );
 }
