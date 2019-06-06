@@ -3,7 +3,7 @@ import AppBar from "./AppBar/AppBar";
 import Hero from "./Hero/Hero";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import axios from "axios";
-import Clock from "./Utils/Clock";
+import Clock from "./ExampleCities/Clock";
 
 // Context for the API
 export const Store = React.createContext();

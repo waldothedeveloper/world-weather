@@ -4,8 +4,7 @@ import campfire from "../images/undraw_campfire.svg";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Search from "./Search";
-import WeatherCard from "./WeatherCard";
-
+import WeatherCard from "../ExampleCities/WeatherCard";
 
 const styles = theme => ({
   root: {
@@ -24,7 +23,6 @@ const styles = theme => ({
 });
 
 function Hero(props) {
-
   const { classes } = props;
 
   return (

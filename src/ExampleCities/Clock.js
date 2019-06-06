@@ -2,9 +2,17 @@ import React, { useState, useEffect, useContext } from "react";
 import Typography from "@material-ui/core/Typography";
 import * as momentTZ from "moment-timezone";
 import { Store } from "../App";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+  buttonsColor: {
+    color: "#aaa9b7"
+  }
+}));
 
 //To get the full timezone object of each sample city
 export default function Clock(props) {
+  const classes = useStyles();
   const cities = useContext(Store);
   const cityNames = [];
 
@@ -33,7 +41,9 @@ export default function Clock(props) {
   const CitiesClock = () =>
     cityNames.length > 0 &&
     cityNames.map(city => {
-      return momentTZ.tz(new Date(), city).format("h:mm:ss A");
+      return momentTZ
+        .tz(new Date(), city)
+        .format("dddd, MMMM Do YYYY, h:mm:ss A");
     });
 
   const [date, setDate] = useState([]);
@@ -51,7 +61,9 @@ export default function Clock(props) {
 
   return (
     <React.Fragment>
-      <Typography variant="h4">{date[props.activeStep]}</Typography>
+      <Typography className={classes.buttonsColor} variant="subtitle1">
+        {date[props.activeStep]}
+      </Typography>
     </React.Fragment>
   );
 }
