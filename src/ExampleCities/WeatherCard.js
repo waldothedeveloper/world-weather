@@ -20,8 +20,11 @@ const useStyles = makeStyles(theme => ({
   card: {
     display: "flex",
     flexWrap: "wrap",
+    justifyContent: "center",
     width: 700,
-    marginBottom: theme.spacing(6)
+    marginBottom: theme.spacing(6),
+    backgroundColor: "#ffffff",
+    backgroundImage: "linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)"
   },
   bullet: {
     display: "inline-block",
@@ -45,7 +48,7 @@ const useStyles = makeStyles(theme => ({
   cardContent: {
     width: "50%"
   },
-  buttonsColor: {
+  colors: {
     color: "#aaa9b7"
   }
 }));
@@ -62,7 +65,7 @@ function WeatherCard() {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = tutorialSteps.length;
-  const icon = exCities.length > 0 && exCities[activeStep].weather[0].icon;
+  // const icon = exCities.length > 0 && exCities[activeStep].weather[0].icon;
   const [test, setTest] = useState(false);
 
   // Functions to show next and previous weather card
@@ -76,13 +79,18 @@ function WeatherCard() {
     setTest(true);
   }
 
+  function handleImgError(event) {
+    console.log("event: ", event.target.src);
+    event.target.src = "http://placehold.jp/50x50.png";
+  }
+
   return (
     <>
       {/* Show errors user feedback */}
       {APIErrors ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
-            <Typography variant="h6">
+            <Typography align="center" variant="h6">
               Oh no...we are having technical issues...try again later
             </Typography>
           </CardContent>
@@ -90,7 +98,9 @@ function WeatherCard() {
       ) : isLoading ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
-            <Typography variant="h2">Loading...</Typography>
+            <Typography align="center" variant="h2">
+              Loading...
+            </Typography>
           </CardContent>
         </Card>
       ) : (
@@ -99,7 +109,13 @@ function WeatherCard() {
             <Typography variant="h4">
               <img
                 className={classes.media}
-                src={`http://openweathermap.org/img/w/${icon}.png`}
+                onError={() => handleImgError()}
+                src={
+                  isLoading
+                    ? "http://placehold.jp/50x50.png"
+                    : `http://openweathermap.org/img/w/${exCities.length > 0 &&
+                        exCities[activeStep].weather[0].icon}.png`
+                }
                 alt="cities"
               />
               {exCities.length > 0 && exCities[activeStep].name}
@@ -112,19 +128,19 @@ function WeatherCard() {
               }
             />
 
-            <Typography variant="h6" className={classes.buttonsColor}>
+            <Typography variant="h6" className={classes.colors}>
               {exCities.length > 0 &&
                 exCities[activeStep].weather[0].description}
             </Typography>
           </CardContent>
           <CardContent className={classes.cardContent}>
             <Clock activeStep={activeStep} />
-            <Typography variant="h6" className={classes.buttonsColor}>
+            <Typography variant="h6" className={classes.colors}>
               {" "}
               Humidity:{" "}
               {exCities.length > 0 && exCities[activeStep].main.humidity}
             </Typography>
-            <Typography variant="h6" className={classes.buttonsColor}>
+            <Typography variant="h6" className={classes.colors}>
               Wind Speed:{" "}
               {exCities.length > 0 && exCities[activeStep].wind.speed}
             </Typography>

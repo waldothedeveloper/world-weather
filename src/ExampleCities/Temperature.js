@@ -23,11 +23,11 @@ const useStyles = makeStyles({
   },
   tempGreyed: {
     fontWeight: 600,
-    backgroundColor: "#bdc3c7",
-    backgroundImage: -"linear-gradient(to right, #2c3e50, #bdc3c7)",
+    backgroundColor: "#000000",
+    backgroundImage: "linear-gradient(147deg, #000000 0%, #2c3e50 74%)",
     WebkitTextFillColor: "transparent",
     WebkitBackgroundClip: "text",
-    opacity: 0.5
+    opacity: 0.8
   }
 });
 
@@ -35,11 +35,9 @@ export default function Temperature(props) {
   const classes = useStyles();
   const [currentTemp, setCurrentTemp] = useState(true);
   const [celsius, setCelsius] = useState(props.temperature);
-  console.log("celsius: ", celsius);
   const [fahrenheit, setFahrenheit] = useState(
     parseInt((celsius * 9) / 5 + 32)
   );
-  console.log("fahrenheit: ", fahrenheit);
 
   useEffect(() => {
     if (props.test) {
