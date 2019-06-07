@@ -6,9 +6,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   buttonsColor: {
-    color: "#aaa9b7"
+    backgroundColor: "#000000",
+    backgroundImage: "linear-gradient(147deg, #000000 0%, #2c3e50 74%)",
+    WebkitTextFillColor: "transparent",
+    WebkitBackgroundClip: "text"
   }
 }));
+ 
 
 //To get the full timezone object of each sample city
 export default function Clock(props) {

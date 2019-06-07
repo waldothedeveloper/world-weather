@@ -3,7 +3,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Typography from "@material-ui/core/Typography";
@@ -11,12 +10,14 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import { Store, Errors, Loading } from "../App";
 import Clock from "./Clock";
 import Temperature from "./Temperature";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: "100%",
     background: "none"
   },
+
   card: {
     display: "flex",
     flexWrap: "wrap",
@@ -154,11 +155,9 @@ function WeatherCard() {
               activeStep={activeStep}
               nextButton={
                 <Button
-                  size="small"
                   onClick={handleNext}
                   disabled={activeStep === maxSteps - 1}
                 >
-                  Next
                   {theme.direction === "rtl" ? (
                     <KeyboardArrowLeft />
                   ) : (
@@ -167,17 +166,12 @@ function WeatherCard() {
                 </Button>
               }
               backButton={
-                <Button
-                  size="small"
-                  onClick={handleBack}
-                  disabled={activeStep === 0}
-                >
+                <Button onClick={handleBack} disabled={activeStep === 0}>
                   {theme.direction === "rtl" ? (
                     <KeyboardArrowRight />
                   ) : (
                     <KeyboardArrowLeft />
                   )}
-                  Back
                 </Button>
               }
             />
