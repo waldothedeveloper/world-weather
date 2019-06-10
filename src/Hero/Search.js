@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
@@ -28,22 +28,36 @@ const useStyles = makeStyles({
   }
 });
 
+// This is the pride colors as a gradient but I like it
+// linear-gradient(to right,#DF4998,#39BDB1,#00a9e5,#fed10a)
+
 function Search() {
   const classes = useStyles();
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleChange = event => {
+    setSearchValue(event.target.value);
+  };
+
+  const isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(searchValue);
+  console.log("isValidZip: ", isValidZip);
 
   return (
     <Paper className={classes.root}>
       <InputBase
+        onChange={handleChange}
+        value={searchValue}
         className={classes.input}
-        placeholder="Search ZIP, City or Place"
+        autoFocus={true}
+        placeholder='Search ZIP (US only), City or Place'
       />
       <Divider className={classes.divider} />
       <IconButton
-        color="primary"
+        color='primary'
         className={classes.iconButton}
-        aria-label="Directions"
+        aria-label='Directions'
       >
-        <SearchIcon />
+        <SearchIcon onClick={console.log("Search icon clicked")} />
       </IconButton>
     </Paper>
   );

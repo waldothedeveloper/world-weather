@@ -4,7 +4,7 @@ import Hero from "./Hero/Hero";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import axios from "axios";
 import Clock from "./ExampleCities/Clock";
-
+// import AddDataButton from "./AddData";
 // Context for the API
 export const Store = React.createContext();
 export const Errors = React.createContext();
@@ -45,6 +45,7 @@ function App() {
             <AppBar />
             <Hero />
             <Clock />
+            {/* <AddDataButton /> */}
           </Errors.Provider>
         </Loading.Provider>
       </Store.Provider>
