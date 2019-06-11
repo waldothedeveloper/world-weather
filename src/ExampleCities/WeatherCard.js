@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -7,9 +7,9 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Typography from "@material-ui/core/Typography";
 import MobileStepper from "@material-ui/core/MobileStepper";
-import { Store, Errors, Loading } from "../App";
 import Clock from "./Clock";
 import Temperature from "./Temperature";
+import ApiRequest from "../Utils/ApiResquest";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
@@ -58,15 +58,13 @@ const useStyles = makeStyles(theme => ({
 // background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
 
 function WeatherCard() {
-  const exCities = useContext(Store);
-  const APIErrors = useContext(Errors);
-  const isLoading = useContext(Loading);
-  const tutorialSteps = exCities;
+  const [{ data, isError, isLoading }] = ApiRequest();
+
+  // const tutorialSteps = data;
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = tutorialSteps.length;
-  // const icon = exCities.length > 0 && exCities[activeStep].weather[0].icon;
+  const maxSteps = data.length;
   const [test, setTest] = useState(false);
 
   // Functions to show next and previous weather card
@@ -80,18 +78,13 @@ function WeatherCard() {
     setTest(true);
   }
 
-  function handleImgError(event) {
-    console.log("event: ", event.target.src);
-    event.target.src = "http://placehold.jp/50x50.png";
-  }
-
   return (
     <>
       {/* Show errors user feedback */}
-      {APIErrors ? (
+      {isError ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
-            <Typography align="center" variant="h6">
+            <Typography align='center' variant='h6'>
               Oh no...we are having technical issues...try again later
             </Typography>
           </CardContent>
@@ -99,7 +92,7 @@ function WeatherCard() {
       ) : isLoading ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
-            <Typography align="center" variant="h2">
+            <Typography align='center' variant='h2'>
               Loading...
             </Typography>
           </CardContent>
@@ -107,54 +100,52 @@ function WeatherCard() {
       ) : (
         <Card raised={true} className={classes.card}>
           <CardContent className={classes.cardContent}>
-            <Typography variant="h4">
+            <Typography variant='h4'>
               <img
                 className={classes.media}
-                onError={() => handleImgError()}
                 src={
                   isLoading
                     ? "http://placehold.jp/50x50.png"
-                    : `http://openweathermap.org/img/w/${exCities.length > 0 &&
-                        exCities[activeStep].weather[0].icon}.png`
+                    : `http://openweathermap.org/img/w/${data.length > 0 &&
+                        data[activeStep].weather[0].icon}.png`
                 }
-                alt="cities"
+                alt='cities'
               />
-              {exCities.length > 0 && exCities[activeStep].name}
+              {data.length > 0 && data[activeStep].name}
             </Typography>
             {/* The temperature Component */}
             <Temperature
               test={test}
               temperature={
-                exCities.length > 0 && parseInt(exCities[activeStep].main.temp)
+                data.length > 0 && parseInt(data[activeStep].main.temp)
               }
             />
 
-            <Typography variant="h6" className={classes.colors}>
-              {exCities.length > 0 &&
-                exCities[activeStep].weather[0].description}
+            <Typography variant='h6' className={classes.colors}>
+              {data.length > 0 && data[activeStep].weather[0].description}
             </Typography>
           </CardContent>
           <CardContent className={classes.cardContent}>
             <Clock activeStep={activeStep} />
-            <Typography variant="h6" className={classes.colors}>
+            <Typography variant='h6' className={classes.colors}>
               {" "}
               Humidity:{" "}
-              {exCities.length > 0 && exCities[activeStep].main.humidity}
+              {DataTransfer.length > 0 && data[activeStep].main.humidity}
             </Typography>
-            <Typography variant="h6" className={classes.colors}>
-              Wind Speed:{" "}
-              {exCities.length > 0 && exCities[activeStep].wind.speed}
+            <Typography variant='h6' className={classes.colors}>
+              Wind Speed: {data.length > 0 && data[activeStep].wind.speed}
             </Typography>
           </CardContent>
           <CardActions className={classes.actions}>
             <MobileStepper
               className={classes.root}
               steps={maxSteps}
-              position="static"
-              variant="dots"
+              position='static'
+              variant='dots'
               activeStep={activeStep}
               nextButton={
                 <Button
+                  size='small'
                   onClick={handleNext}
                   disabled={activeStep === maxSteps - 1}
                 >
@@ -166,7 +157,15 @@ function WeatherCard() {
                 </Button>
               }
               backButton={
+
+                <Button
+                  size='small'
+                  onClick={handleBack}
+                  disabled={activeStep === 0}
+                >
+
                 <Button onClick={handleBack} disabled={activeStep === 0}>
+
                   {theme.direction === "rtl" ? (
                     <KeyboardArrowRight />
                   ) : (
