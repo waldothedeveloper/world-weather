@@ -1,19 +1,18 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: process.env.APIKEY,
+  authDomain: process.env.DATABASEURL,
+  databaseURL: process.env.DATABASEURL,
+  projectId: process.env.PROJECTID,
+  storageBucket: process.env.STORAGEBUCKET,
+  messagingSenderId: process.env.MESSAGINGSENDERID,
+  appId: process.env.APPID
 };
 
-firebase.initializeApp(firebaseConfig)
-const settings = {timestampsInSnapshots: true};
-window.firebase = firebase
+export default firebase.initializeApp(firebaseConfig);
+// const settings = { timestampsInSnapshots: true };
+window.firebase = firebase;
 
-export const firestore = firebase.firestore()
-export default firebase
+export const firestore = firebase.firestore();
