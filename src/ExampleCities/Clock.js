@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import * as momentTZ from "moment-timezone";
 import { makeStyles } from "@material-ui/core/styles";
-import ApiRequest from "../Utils/ApiResquest";
 
 const useStyles = makeStyles(theme => ({
   buttonsColor: {
@@ -12,13 +11,11 @@ const useStyles = makeStyles(theme => ({
 
 // To get the full timezone object of each sample city
 export default function Clock(props) {
-  const [{ data }] = ApiRequest();
-  // console.log("data: ", data);
   const classes = useStyles();
 
   const cityNames = [];
 
-  data.forEach(city => {
+  props.data.forEach(city => {
     if (city.name === "Hong Kong") {
       cityNames.push("Asia/Hong_Kong");
     }

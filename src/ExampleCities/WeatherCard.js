@@ -17,6 +17,10 @@ const useStyles = makeStyles(theme => ({
     maxWidth: "100%",
     background: "none"
   },
+  cityName: {
+    fontWeight: 900,
+    paddingBottom: "0.35em"
+  },
   card: {
     display: "flex",
     flexWrap: "wrap",
@@ -58,13 +62,12 @@ const useStyles = makeStyles(theme => ({
 
 function WeatherCard() {
   const [{ data, isError, isLoading }] = ApiRequest();
-
-  // const tutorialSteps = data;
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = data.length;
   const [test, setTest] = useState(false);
+
+  const dataReceived = data;
 
   // Functions to show next and previous weather card
   function handleNext() {
@@ -79,11 +82,12 @@ function WeatherCard() {
 
   return (
     <>
-      {/* Show errors user feedback */}
-      {isError ? (
+      {dataReceived.length === 0 ? (
+        <div>Loading...</div>
+      ) : isError ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
-            <Typography align='center' variant='h6'>
+            <Typography align='center' variant='h4'>
               Oh no...we are having technical issues...try again later
             </Typography>
           </CardContent>
@@ -92,53 +96,52 @@ function WeatherCard() {
         <Card raised={true} className={classes.card}>
           <CardContent>
             <Typography align='center' variant='h2'>
-              Loading...
+              Loading...This will take a second
             </Typography>
           </CardContent>
         </Card>
       ) : (
         <Card raised={true} className={classes.card}>
           <CardContent className={classes.cardContent}>
-            <Typography variant='h4'>
+            <Typography className={classes.cityName} variant='h3' noWrap={true}>
               <img
                 className={classes.media}
                 src={
                   isLoading
                     ? "http://placehold.jp/50x50.png"
-                    : `http://openweathermap.org/img/w/${data.length > 0 &&
-                        data[activeStep].weather[0].icon}.png`
+                    : `http://openweathermap.org/img/w/${
+                        dataReceived.data.list[activeStep].weather[0].icon
+                      }.png`
                 }
                 alt='cities'
               />
-              {data.length > 0 && data[activeStep].name}
+              {dataReceived.data.list[activeStep].name}
             </Typography>
-            {/* The temperature Component */}
             <Temperature
               test={test}
-              temperature={
-                data.length > 0 && parseInt(data[activeStep].main.temp)
-              }
+              temperature={parseInt(
+                dataReceived.data.list[activeStep].main.temp
+              )}
             />
 
             <Typography variant='h6' className={classes.colors}>
-              {data.length > 0 && data[activeStep].weather[0].description}
+              {dataReceived.data.list[activeStep].weather[0].description}
             </Typography>
           </CardContent>
           <CardContent className={classes.cardContent}>
-            <Clock activeStep={activeStep} />
+            <Clock activeStep={activeStep} data={dataReceived.data.list} />
             <Typography variant='h6' className={classes.colors}>
               {" "}
-              Humidity:{" "}
-              {DataTransfer.length > 0 && data[activeStep].main.humidity}
+              Humidity: {dataReceived.data.list[activeStep].main.humidity}
             </Typography>
             <Typography variant='h6' className={classes.colors}>
-              Wind Speed: {data.length > 0 && data[activeStep].wind.speed}
+              Wind Speed: {dataReceived.data.list[activeStep].wind.speed}
             </Typography>
           </CardContent>
           <CardActions className={classes.actions}>
             <MobileStepper
               className={classes.root}
-              steps={maxSteps}
+              steps={0 || dataReceived.data.list.length}
               position='static'
               variant='dots'
               activeStep={activeStep}
@@ -146,7 +149,7 @@ function WeatherCard() {
                 <Button
                   size='small'
                   onClick={handleNext}
-                  disabled={activeStep === maxSteps - 1}
+                  disabled={activeStep === dataReceived.data.list.length - 1}
                 >
                   Next
                   {theme.direction === "rtl" ? (
