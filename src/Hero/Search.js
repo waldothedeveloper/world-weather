@@ -90,7 +90,7 @@ function Search() {
                 onClick={e => requestToAPI(e, hit.Name)}
                 key={hit.objectID}
               >
-                {hit.Name}, {hit.Code}
+                {hit.Name}
               </ListItem>
             ))}
           </List>
