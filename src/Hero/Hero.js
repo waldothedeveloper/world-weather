@@ -18,7 +18,9 @@ const styles = theme => ({
     fontWeight: 700
   },
   subtitles: {
-    color: "#3C3D5A"
+    color: "#3C3D5A",
+    marginTop: "0.35em",
+    marginBottom: "0.35em"
   }
 });
 
@@ -30,29 +32,29 @@ function Hero(props) {
       <Grid
         container
         className={classes.root}
-        direction="row"
-        justify="center"
-        alignItems="center"
+        direction='row'
+        justify='center'
+        alignItems='center'
       >
         <Grid item lg={6} md={6} sm={6}>
-          <Typography className={classes.type} variant="h3" gutterBottom>
+          <Typography className={classes.type} variant='h3' gutterBottom>
             Find out "weather" <br /> you should go fishing <br /> or stay cozy
             at home
           </Typography>
-          <Typography className={classes.subtitles} variant="h6" gutterBottom>
+          <Typography className={classes.subtitles} variant='h6' gutterBottom>
             Let the rain kiss you <br />
             Let the rain sing you a lullaby
           </Typography>
           <Search />
-          <Typography className={classes.subtitles} variant="h6" gutterBottom>
+          <Typography className={classes.subtitles} variant='h6' gutterBottom>
             Best way to know your city weather easily
           </Typography>
         </Grid>
         <Grid item lg={6} md={6} sm={6}>
-          <img width="100%" height="auto" alt="campfire" src={campfire} />
+          <img width='100%' height='auto' alt='campfire' src={campfire} />
         </Grid>
       </Grid>
-      <Grid container direction="row" justify="center" alignItems="center">
+      <Grid container direction='row' justify='center' alignItems='center'>
         <WeatherCard />
       </Grid>
     </div>

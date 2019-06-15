@@ -4,7 +4,7 @@ import axios from "axios";
 export default function ApiRequest() {
   const apiID = "06db74019553953ddc2c5f3847b4c675";
   const [data, setData] = useState([]);
-  console.log("data from ApiRequest: ", data);
+  // console.log("data from ApiRequest: ", data);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [url, setUrl] = useState(

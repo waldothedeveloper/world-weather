@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
@@ -27,8 +27,10 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     width: 500,
-    boxShadow: "none",
-    borderRadius: "0"
+    boxShadow:
+      "0 7px 13px -3px rgba(45,35,66,0.3), 0 2px 4px 0 rgba(45,35,66,0.4)",
+    borderRadius: "0",
+    backgroundColor: "#fefefe"
   },
   input: {
     marginLeft: 8,
@@ -40,9 +42,13 @@ const useStyles = makeStyles({
   lists: {
     width: "100%",
     maxWidth: 500,
-    background: "#FFFFFF",
-    boxShadow: "0 4px 6px 0 rgba(32,33,36,0.28)",
+    background: "#fefefe",
+    boxShadow:
+      "0 7px 13px -3px rgba(45,35,66,0.3), 0 2px 4px 0 rgba(45,35,66,0.4), inset 0 -2px 0 0 #eeeeee",
     borderRadius: "0 0 24px 24px"
+  },
+  autoComplete: {
+    display: "none"
   }
   // divider: {
   //   width: 1.2,
@@ -51,12 +57,31 @@ const useStyles = makeStyles({
   // }
 });
 
-// This is the pride colors as a gradient but I like it
+// This is the pride colors as a gradient but I like it, doesn't look bad
 // linear-gradient(to right,#DF4998,#39BDB1,#00a9e5,#fed10a)
 
 function Search() {
   const classes = useStyles();
   const [{ ...rest }, setUrl] = ApiRequest();
+
+  let inputRef;
+  function setRef(node) {
+    inputRef = node;
+  }
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (inputRef) {
+        console.log("you clicked outside of the search bar");
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
 
   function requestToAPI(e, query) {
     e.preventDefault();
@@ -77,11 +102,12 @@ function Search() {
   }
 
   // Single index
-  const Autocomplete = ({ hits }) => {
+  const Autocomplete = ({ currentRefinement, hits }) => {
+    console.log("currentRefinement: ", currentRefinement);
     return (
       <>
-        {hits.length > 2 ? (
-          <div style={{ display: "none" }} />
+        {currentRefinement === "" ? (
+          <div className={classes.autoComplete} />
         ) : (
           <List className={classes.lists}>
             {hits.map(hit => (
@@ -109,6 +135,7 @@ function Search() {
             className={classes.input}
             autoFocus={true}
             placeholder='Search ZIP (US only), City or Place'
+            ref={setRef}
           />
           <PoweredBy />
           {/* <Divider className={classes.divider} /> */}
@@ -130,7 +157,7 @@ function Search() {
   return (
     <InstantSearch searchClient={searchClient} indexName='city_codes_iso_3166'>
       <ConnectedSearchBox />
-      <CustomAutocomplete />
+      <CustomAutocomplete defaultRefinement='' />
     </InstantSearch>
   );
 }
