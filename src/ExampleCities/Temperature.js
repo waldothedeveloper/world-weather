@@ -32,6 +32,7 @@ const useStyles = makeStyles({
 });
 
 export default function Temperature(props) {
+  console.log("props.temperature: ", props.temperature);
   const classes = useStyles();
   const [currentTemp, setCurrentTemp] = useState(true);
   const [celsius, setCelsius] = useState(props.temperature);
@@ -50,13 +51,13 @@ export default function Temperature(props) {
     <div className={classes.root}>
       <Typography
         onClick={() => setCurrentTemp(!!true)}
-        variant="h2"
+        variant='h2'
         className={currentTemp ? classes.tempActive : classes.tempGreyed}
       >
         {celsius}
         <span
           style={{ fontSize: "1.25rem" }}
-          variant="subtitle1"
+          variant='subtitle1'
           className={currentTemp ? classes.tempActive : classes.tempGreyed}
         >
           &#x2103;
@@ -67,13 +68,13 @@ export default function Temperature(props) {
 
       <Typography
         onClick={() => setCurrentTemp(!true)}
-        variant="h2"
+        variant='h2'
         className={currentTemp ? classes.tempGreyed : classes.tempActive}
       >
         {fahrenheit}
         <span
           style={{ fontSize: "1.25rem" }}
-          variant="subtitle1"
+          variant='subtitle1'
           className={currentTemp ? classes.tempGreyed : classes.tempActive}
         >
           &#x2109;
