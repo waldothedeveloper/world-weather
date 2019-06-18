@@ -4,6 +4,9 @@
 
 1. Clone this repo
 2. npm install & npm start
+
+
+
 ![Welcome to WeatherKast](https://github.com/waldothedeveloper/WeatherKast/blob/master/weatherkast.png)
 
 
