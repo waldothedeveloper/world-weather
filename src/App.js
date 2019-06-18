@@ -3,6 +3,7 @@ import AppBar from "./AppBar/AppBar";
 import Hero from "./Hero/Hero";
 import CssBaseline from "@material-ui/core/CssBaseline";
 // import AddDataButton from "./AddData";
+// import Test from "./Hero/TEST";
 
 // hong kong, havana, berlin, Singapore, Moscow
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <AppBar />
       <Hero />
       {/* <AddDataButton /> */}
+      {/* <Test /> */}
     </React.Fragment>
   );
 }
