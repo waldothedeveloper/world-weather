@@ -1,1 +1,4 @@
-A beautiful app to check the weather no matter where you are in the world
+# WeatherKast
+### A beaatiful project to create awarness about the weather in our planet, and what you can do to change it
+
+![Image of Yaktocat](https://github.com/waldothedeveloper/WeatherKast/blob/master/weatherkast.png)
