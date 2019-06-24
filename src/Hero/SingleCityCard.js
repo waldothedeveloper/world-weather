@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 // import Button from "@material-ui/core/Button";
-import Clock from "../ExampleCities/Clock";
+// import Clock from "../ExampleCities/Clock";
 import Typography from "@material-ui/core/Typography";
 import Temperature from "../ExampleCities/Temperature";
 
@@ -83,7 +83,7 @@ export default function SimpleCard(props) {
             </Typography>
           </CardContent>
           <CardContent className={classes.cardContent}>
-            <Clock data={dataReceived.data} />
+            {/* <Clock data={dataReceived.data} /> */}
             <Typography variant='h6' className={classes.colors}>
               Humidity: {dataReceived.data.main.humidity}
             </Typography>

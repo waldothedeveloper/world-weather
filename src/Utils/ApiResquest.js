@@ -7,8 +7,9 @@ export default function ApiRequest() {
   // console.log("data from ApiRequest: ", data);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  //Cities in this request: New York(5128638), San Francisco(5391959), Los Angeles(5368361), District of Columbia(4138106), Miami(4164138), Chicago(4887398), Seattle(5809844), Boston(4183849), Philadelphia(4560349), Denver(5419384)
   const [url, setUrl] = useState(
-    `http://api.openweathermap.org/data/2.5/group?id=1819729,3553478,2950159,1880252,5601538&units=metric&APPID=${apiID}`
+    `http://api.openweathermap.org/data/2.5/group?id=5128638,5391959,5368361,4138106,4164138,4887398,5809844,4183849,4560349,5419384&units=metric&APPID=${apiID}`
   );
   useEffect(() => {
     const abortController = new AbortController();

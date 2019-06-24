@@ -16,6 +16,7 @@ import {
   connectSearchBox,
   PoweredBy
 } from "react-instantsearch-dom";
+import { Typography } from "@material-ui/core";
 
 //This is the Algolia API keys
 const searchClient = algoliasearch(
@@ -51,7 +52,16 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 500,
     background: "#fefefe",
     boxShadow:
-      "0 7px 13px -3px rgba(45,35,66,0.3), 0 2px 4px 0 rgba(45,35,66,0.4), inset 0 -2px 0 0 #eeeeee",
+      "0 7px 13px -3px rgba(45,35,66,0.3), 0 2px 4px 0 rgba(45,35,66,0.4)",
+    borderRadius: "0 0 24px 24px"
+  },
+  listsError: {
+    width: "100%",
+    maxWidth: 500,
+    background: "#fefefe",
+    color: "#DC143C",
+    boxShadow:
+      "0 7px 13px -3px rgba(45,35,66,0.3), 0 2px 4px 0 rgba(45,35,66,0.4)",
     borderRadius: "0 0 24px 24px"
   },
   autoComplete: {
@@ -82,20 +92,27 @@ function Search() {
     setOpenModal(false);
   };
 
-  function requestToAPI(e, query) {
+  function requestWeatherInfo(e, query) {
+    console.log("query: ", query);
+    //openweatherAPI
     const apiID = "06db74019553953ddc2c5f3847b4c675";
+    //  ZIPCODE validation keys =>  https://account.smartystreets.com/#keys
+    const apiZIP = "33410461249740701";
+
     //checking if the input from user is a valid US zipcode
     const isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(query);
 
     if (isValidZip) {
-      console.log("Valid US Code");
+      // console.log("Valid US Code");
       setUrl(
-        `http://api.openweathermap.org/data/2.5/weather?zip=${query}&units=metric&APPID=${apiID}`
+        `http://api.openweathermap.org/data/2.5/weather?zip=${isValidZip},${query.country.toLowerCase()}&units=metric&APPID=${apiID}`
       );
       handleOpen();
     } else {
       setUrl(
-        `http://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&APPID=${apiID}`
+        `http://api.openweathermap.org/data/2.5/weather?q=${
+          query.name
+        },${query.country.toLowerCase()}&units=metric&APPID=${apiID}`
       );
       handleOpen();
     }
@@ -103,20 +120,33 @@ function Search() {
   }
 
   // Single index search return from Algolia
+  // Some rendering logic is being handled here
   const Autocomplete = ({ currentRefinement, hits }) => {
     return (
       <>
         {currentRefinement === "" ? (
           <div className={classes.autoComplete} />
+        ) : !isNaN(currentRefinement) ? (
+          <List className={classes.lists}>
+            <ListItem>
+              <Typography>Is this a US zipcode???</Typography>
+            </ListItem>
+          </List>
+        ) : hits.length === 0 ? (
+          <List className={classes.listsError}>
+            <ListItem>
+              <Typography>Please enter a valid USA city...</Typography>
+            </ListItem>
+          </List>
         ) : (
           <List className={classes.lists}>
             {hits.map(hit => (
               <ListItem
                 button
-                onClick={e => requestToAPI(e, hit.Name)}
+                onClick={e => requestWeatherInfo(e, hit)}
                 key={hit.objectID}
               >
-                {hit.Name}
+                {hit.name}
               </ListItem>
             ))}
           </List>
@@ -137,8 +167,8 @@ function Search() {
             autoFocus={true}
             required={true}
             type='text'
-            placeholder='Search ZIP (US only), City or Place'
-            // ref={setRef}
+            placeholder='Search any City or Place in the USA'
+            inputProps={{ maxLength: 5 }}
           />
           <PoweredBy />
           {/* <Divider className={classes.divider} /> */}
@@ -164,7 +194,7 @@ function Search() {
     transform: `translate(-50%, -50%)`
   };
   return (
-    <InstantSearch searchClient={searchClient} indexName='city_codes_iso_3166'>
+    <InstantSearch searchClient={searchClient} indexName='us_cities'>
       <ConnectedSearchBox />
       <CustomAutocomplete defaultRefinement='' />
       <Modal

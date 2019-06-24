@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
-import * as momentTZ from "moment-timezone";
+//NEED TO CHECK THIS IMPORT BELOW
+import * as moment from "moment-timezone";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -47,7 +48,7 @@ export default function Clock(props) {
   const CitiesClock = () =>
     cityNames.length > 0 &&
     cityNames.map(city => {
-      return momentTZ
+      return moment
         .tz(new Date(), city)
         .format("dddd, MMMM Do YYYY, h:mm:ss A");
     });

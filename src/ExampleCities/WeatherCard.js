@@ -8,7 +8,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Typography from "@material-ui/core/Typography";
 import MobileStepper from "@material-ui/core/MobileStepper";
-import Clock from "./Clock";
+// import Clock from "./Clock";
 import Temperature from "./Temperature";
 import ApiRequest from "../Utils/ApiResquest";
 
@@ -25,12 +25,12 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
-    width: 700,
+    width: 900,
     marginBottom: theme.spacing(6),
     backgroundColor: "#ffffff",
     backgroundImage: "linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)",
     boxShadow:
-      "0 7px 13px -3px rgba(45,35,66,0.3), 0 8px 10px 0 rgba(45,35,66,0.4), inset 0 -2px 0 0 rgba(0,0,0,0.12)"
+      "0 7px 13px -3px rgba(45,35,66,0.3), 0 8px 10px 0 rgba(45,35,66,0.4)"
   },
   bullet: {
     display: "inline-block",
@@ -105,8 +105,8 @@ function WeatherCard() {
       ) : (
         <Card raised={true} className={classes.card}>
           <CardContent className={classes.cardContent}>
-            <Typography className={classes.cityName} variant='h3' noWrap={true}>
-              <img
+            <Typography className={classes.cityName} variant='h3'>
+              {/* <img
                 className={classes.media}
                 src={
                   isLoading
@@ -116,7 +116,7 @@ function WeatherCard() {
                       }.png`
                 }
                 alt='cities'
-              />
+              /> */}
               {dataReceived.data.list[activeStep].name}
             </Typography>
             <Temperature
@@ -131,7 +131,7 @@ function WeatherCard() {
             </Typography>
           </CardContent>
           <CardContent className={classes.cardContent}>
-            <Clock activeStep={activeStep} data={dataReceived.data.list} />
+            {/* <Clock activeStep={activeStep} data={dataReceived.data.list} /> */}
             <Typography variant='h6' className={classes.colors}>
               {" "}
               Humidity: {dataReceived.data.list[activeStep].main.humidity}

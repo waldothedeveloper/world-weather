@@ -38,12 +38,12 @@ function Hero(props) {
       >
         <Grid item lg={6} md={6} sm={6}>
           <Typography className={classes.type} variant='h3' gutterBottom>
-            Find out "weather" <br /> you should go fishing <br /> or stay cozy
+            Find out "weather" <br /> you should go camping <br /> or stay cozy
             at home
           </Typography>
           <Typography className={classes.subtitles} variant='h6' gutterBottom>
-            Let the rain kiss you <br />
-            Let the rain sing you a lullaby
+            Find the local weather <br />
+            in any city of USA
           </Typography>
           <Search />
           <Typography className={classes.subtitles} variant='h6' gutterBottom>

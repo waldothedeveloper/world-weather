@@ -9,8 +9,8 @@ const useStyles = makeStyles({
     padding: 22
   },
   divider: {
-    width: 2.2,
-    height: 34,
+    width: 1.2,
+    height: 22,
     margin: 22,
     backgroundColor: "#0b0b2a"
   },
@@ -32,7 +32,6 @@ const useStyles = makeStyles({
 });
 
 export default function Temperature(props) {
-  console.log("props.temperature: ", props.temperature);
   const classes = useStyles();
   const [currentTemp, setCurrentTemp] = useState(true);
   const [celsius, setCelsius] = useState(props.temperature);
