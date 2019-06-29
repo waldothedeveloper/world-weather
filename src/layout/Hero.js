@@ -2,30 +2,12 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import campfire from "../images/undraw_campfire.svg";
 import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
-import Search from "./Search";
-import WeatherCard from "../ExampleCities/WeatherCard";
+import Search from "../components/Search";
+import WeatherCard from "../layout/WeatherCard";
+import { useStyles } from "../css/heroCSS";
 
-const styles = theme => ({
-  root: {
-    flexWrap: "nowrap",
-    padding: theme.spacing(15)
-  },
-  bg: {
-    background: "#b5cbe1"
-  },
-  type: {
-    fontWeight: 700
-  },
-  subtitles: {
-    color: "#3C3D5A",
-    marginTop: "0.35em",
-    marginBottom: "0.35em"
-  }
-});
-
-function Hero(props) {
-  const { classes } = props;
+function Hero() {
+  const classes = useStyles();
 
   return (
     <div className={classes.bg}>
@@ -61,4 +43,4 @@ function Hero(props) {
   );
 }
 
-export default withStyles(styles)(Hero);
+export default Hero;

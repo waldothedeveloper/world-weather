@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import { useStyles } from "../css/weathercardCSS";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -11,56 +12,6 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 // import Clock from "./Clock";
 import Temperature from "./Temperature";
 import ApiRequest from "../Utils/ApiResquest";
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    maxWidth: "100%",
-    background: "none"
-  },
-  cityName: {
-    fontWeight: 900,
-    paddingBottom: "0.35em"
-  },
-  card: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    width: 900,
-    marginBottom: theme.spacing(6),
-    backgroundColor: "#ffffff",
-    backgroundImage: "linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)",
-    boxShadow:
-      "0 7px 13px -3px rgba(45,35,66,0.3), 0 8px 10px 0 rgba(45,35,66,0.4)"
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
-  },
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
-  },
-  media: {
-    height: 50,
-    width: 50
-  },
-  actions: {
-    display: "block",
-    width: "100%"
-  },
-  cardContent: {
-    width: "50%"
-  },
-  colors: {
-    color: "#aaa9b7"
-  }
-}));
-
-// background-color: #21D4FD;
-// background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
 
 function WeatherCard() {
   const [{ data, isError, isLoading }] = ApiRequest();
@@ -106,17 +57,6 @@ function WeatherCard() {
         <Card raised={true} className={classes.card}>
           <CardContent className={classes.cardContent}>
             <Typography className={classes.cityName} variant='h3'>
-              {/* <img
-                className={classes.media}
-                src={
-                  isLoading
-                    ? "http://placehold.jp/50x50.png"
-                    : `http://openweathermap.org/img/w/${
-                        dataReceived.data.list[activeStep].weather[0].icon
-                      }.png`
-                }
-                alt='cities'
-              /> */}
               {dataReceived.data.list[activeStep].name}
             </Typography>
             <Temperature

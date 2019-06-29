@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { useStyles } from "../css/searchCSS";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
@@ -8,7 +8,7 @@ import ApiRequest from "../Utils/ApiResquest";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Modal from "@material-ui/core/Modal";
-import SingleCityCard from "./SingleCityCard";
+import SingleCityCard from "../layout/SingleCityCard";
 import algoliasearch from "algoliasearch";
 import {
   InstantSearch,
@@ -23,56 +23,6 @@ const searchClient = algoliasearch(
   "SX7G9EN1T6",
   "baf9df4d1cce368968385d38fff5af4a"
 );
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    marginTop: 20,
-    padding: "4px",
-    display: "flex",
-    alignItems: "center",
-    width: 500,
-    boxShadow:
-      "0 7px 13px -3px rgba(45,35,66,0.3), 0 2px 4px 0 rgba(45,35,66,0.4)",
-    borderRadius: "0",
-    backgroundColor: "#fefefe"
-  },
-  paper: {
-    position: "absolute",
-    outline: "none"
-  },
-  input: {
-    marginLeft: 8,
-    flex: 1
-  },
-  iconButton: {
-    padding: 10
-  },
-  lists: {
-    width: "100%",
-    maxWidth: 500,
-    background: "#fefefe",
-    boxShadow:
-      "0 7px 13px -3px rgba(45,35,66,0.3), 0 2px 4px 0 rgba(45,35,66,0.4)",
-    borderRadius: "0 0 24px 24px"
-  },
-  listsError: {
-    width: "100%",
-    maxWidth: 500,
-    background: "#fefefe",
-    color: "#DC143C",
-    boxShadow:
-      "0 7px 13px -3px rgba(45,35,66,0.3), 0 2px 4px 0 rgba(45,35,66,0.4)",
-    borderRadius: "0 0 24px 24px"
-  },
-  autoComplete: {
-    display: "none"
-  }
-  // divider: {
-  //   width: 1.2,
-  //   height: 34,
-  //   margin: 4
-  // }
-}));
 
 // This is the pride colors as a gradient but I like it, doesn't look bad
 // linear-gradient(to right,#DF4998,#39BDB1,#00a9e5,#fed10a)
@@ -93,6 +43,7 @@ function Search() {
   };
 
   function requestWeatherInfo(e, query) {
+    e.preventDefault();
     console.log("query: ", query);
     //openweatherAPI
     const apiID = "06db74019553953ddc2c5f3847b4c675";
@@ -116,7 +67,6 @@ function Search() {
       );
       handleOpen();
     }
-    e.preventDefault();
   }
 
   // Single index search return from Algolia
