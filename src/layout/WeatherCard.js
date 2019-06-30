@@ -15,9 +15,11 @@ import ApiRequest from "../Utils/ApiResquest";
 
 function WeatherCard() {
   const [{ data, isError, isLoading }] = ApiRequest();
+  console.log("isError: ", isError);
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
+  console.log("activeStep: ", activeStep);
   const [test, setTest] = useState(false);
 
   const dataReceived = data;
@@ -35,12 +37,10 @@ function WeatherCard() {
 
   return (
     <>
-      {dataReceived.length === 0 ? (
-        <div>Loading...</div>
-      ) : isError ? (
+      {isError ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
-            <Typography align='center' variant='h4'>
+            <Typography align='center' variant='h5'>
               Oh no...we are having technical issues...try again later
             </Typography>
           </CardContent>
@@ -48,12 +48,12 @@ function WeatherCard() {
       ) : isLoading ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
-            <Typography align='center' variant='h2'>
+            <Typography align='center' variant='h5'>
               Loading...This will take a second
             </Typography>
           </CardContent>
         </Card>
-      ) : (
+      ) : dataReceived !== null ? (
         <Card raised={true} className={classes.card}>
           <CardContent className={classes.cardContent}>
             <Typography className={classes.cityName} variant='h3'>
@@ -118,6 +118,8 @@ function WeatherCard() {
             />
           </CardActions>
         </Card>
+      ) : (
+        <div>null</div>
       )}
     </>
   );

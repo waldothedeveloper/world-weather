@@ -5,7 +5,6 @@ export const useStyles = makeStyles(theme => ({
     padding: "40px 10px 0 10px"
   },
   img: {
-    height: 250,
     width: "100%"
   },
   gridList2: {

@@ -1,6 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "../css/weatherInfoCSS";
+import Button from "@material-ui/core/Button";
 
 function WeatherInfo() {
   const classes = useStyles();
@@ -22,6 +23,9 @@ function WeatherInfo() {
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum
       </Typography>
+      <Button className={classes.button} variant='contained' size='large'>
+        More info
+      </Button>
     </div>
   );
 }

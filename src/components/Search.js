@@ -21,7 +21,7 @@ import { Typography } from "@material-ui/core";
 //This is the Algolia API keys
 const searchClient = algoliasearch(
   "SX7G9EN1T6",
-  "baf9df4d1cce368968385d38fff5af4a"
+  process.env.REACT_APP_ALGOLIA_API_KEY
 );
 
 // This is the pride colors as a gradient but I like it, doesn't look bad
@@ -45,10 +45,9 @@ function Search() {
   function requestWeatherInfo(e, query) {
     e.preventDefault();
     console.log("query: ", query);
-    //openweatherAPI
-    const apiID = "06db74019553953ddc2c5f3847b4c675";
+
     //  ZIPCODE validation keys =>  https://account.smartystreets.com/#keys
-    const apiZIP = "33410461249740701";
+    const apiZIP = process.env.REACT_APP_SMARTYSTREETS_API_KEY;
 
     //checking if the input from user is a valid US zipcode
     const isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(query);
@@ -56,14 +55,18 @@ function Search() {
     if (isValidZip) {
       // console.log("Valid US Code");
       setUrl(
-        `http://api.openweathermap.org/data/2.5/weather?zip=${isValidZip},${query.country.toLowerCase()}&units=metric&APPID=${apiID}`
+        `http://api.openweathermap.org/data/2.5/weather?zip=${isValidZip},${query.country.toLowerCase()}&units=metric&APPID=${
+          process.env.REACT_APP_OPENWEATHERMAP_API_KEY
+        }`
       );
       handleOpen();
     } else {
       setUrl(
         `http://api.openweathermap.org/data/2.5/weather?q=${
           query.name
-        },${query.country.toLowerCase()}&units=metric&APPID=${apiID}`
+        },${query.country.toLowerCase()}&units=metric&APPID=${
+          process.env.REACT_APP_OPENWEATHERMAP_API_KEY
+        }`
       );
       handleOpen();
     }

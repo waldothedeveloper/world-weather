@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const apiKey = process.env.PEXELS_API_KEY;
-
 const PexelApiRequest = () => {
   const [data, setData] = useState("");
   const [isError, setIsError] = useState(false);
@@ -16,7 +14,7 @@ const PexelApiRequest = () => {
   const config = {
     method: "GET",
     url: url,
-    headers: { Authorization: apiKey }
+    headers: { Authorization: process.env.REACT_APP_PEXELS_API_KEY }
   };
 
   useEffect(() => {

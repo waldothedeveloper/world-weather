@@ -4,28 +4,29 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: 150
+    backgroundImage: "linear-gradient( 135deg, #000428 0.8%, #004e92 100%)",
+    height: "30rem"
   }
 }));
 
-function SectionB(props) {
+function SectionC(props) {
   const classes = useStyles();
   return (
     <Grid
+      className={classes.root}
       container
       direction='row'
       justify='center'
       alignItems='center'
-      className={classes.root}
     >
       <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-        {props.partA}
+        {props.map}
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-        {props.partB}
+        {props.news}
       </Grid>
     </Grid>
   );
 }
 
-export default SectionB;
+export default SectionC;
