@@ -5,7 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundImage: "linear-gradient( 135deg, #000428 0.8%, #004e92 100%)",
-    height: "30rem"
+    padding: 100
+    // height: "30rem"
+    // clipPath: "inset(13px -50px -50px -50px round 150px)"
   }
 }));
 

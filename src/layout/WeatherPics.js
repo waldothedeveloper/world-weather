@@ -9,9 +9,7 @@ function WeatherPics() {
   const classes = useStyles();
 
   const [{ data, isError, isLoading }] = PexelApiRequest();
-  // console.log("data: ", data);
   const images = data;
-  console.log("images: ", images);
 
   //calling the random pics
   if (typeof images.photos !== "undefined") {
