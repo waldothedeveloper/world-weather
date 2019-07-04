@@ -4,12 +4,14 @@ import PexelApiRequest from "../Utils/Pexels_API_Request";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "../css/weatherpicsCSS";
 import { shuffle } from "../Utils/Randomizer";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function WeatherPics() {
   const classes = useStyles();
 
   const [{ data, isError, isLoading }] = PexelApiRequest();
   const images = data;
+  console.log("images from weatherpic: ", images);
 
   //calling the random pics
   if (typeof images.photos !== "undefined") {
@@ -20,9 +22,9 @@ function WeatherPics() {
       {isLoading ? (
         <Grid container direction='row' justify='center' alignItems='center'>
           <Grid item xm={12} sm={12} md={12} lg={12} xl={12}>
-            <Typography variant='h4' gutterBottom align='center'>
-              Loading...Please wait
-            </Typography>
+            <div style={{ display: "flex", height: "auto" }}>
+              <CircularProgress className={classes.loader} />
+            </div>
           </Grid>
         </Grid>
       ) : isError ? (
@@ -39,7 +41,7 @@ function WeatherPics() {
             <Grid container direction='row' justify='center'>
               <Grid
                 className={classes.gridList}
-                key={images.photos[[0].id]}
+                key={images.photos[[4].id]}
                 item
                 xm={12}
                 sm={12}
@@ -49,13 +51,13 @@ function WeatherPics() {
               >
                 <img
                   className={classes.img}
-                  src={images.photos[0].src.portrait}
-                  alt={images.photos[0].photographer}
+                  src={images.photos[4].src.portrait}
+                  alt={images.photos[4].photographer}
                 />
               </Grid>
               <Grid
                 className={classes.gridList}
-                key={images.photos[1].id}
+                key={images.photos[6].id}
                 item
                 xm={12}
                 sm={12}
@@ -65,13 +67,13 @@ function WeatherPics() {
               >
                 <img
                   className={classes.img}
-                  src={images.photos[1].src.portrait}
-                  alt={images.photos[1].photographer}
+                  src={images.photos[6].src.portrait}
+                  alt={images.photos[6].photographer}
                 />
               </Grid>
               <Grid
                 className={classes.gridList2}
-                key={images.photos[2].id}
+                key={images.photos[10].id}
                 item
                 xm={12}
                 sm={12}
@@ -80,8 +82,8 @@ function WeatherPics() {
                 xl={12}
               >
                 <img
-                  src={images.photos[2].src.landscape}
-                  alt={images.photos[2].photographer}
+                  src={images.photos[10].src.landscape}
+                  alt={images.photos[10].photographer}
                   width='100%'
                   height='auto'
                 />

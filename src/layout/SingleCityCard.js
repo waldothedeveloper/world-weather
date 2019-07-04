@@ -5,6 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 // import Button from "@material-ui/core/Button";
 // import Clock from "../ExampleCities/Clock";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import Temperature from "./Temperature";
 
@@ -30,9 +31,9 @@ export default function SimpleCard(props) {
       ) : isLoading ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
-            <Typography align='center' variant='h2'>
-              Loading...This will take a second
-            </Typography>
+            <div style={{ display: "flex", height: "auto" }}>
+              <CircularProgress style={{ margin: "auto" }} />
+            </div>
           </CardContent>
         </Card>
       ) : (

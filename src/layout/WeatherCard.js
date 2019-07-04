@@ -10,6 +10,7 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Typography from "@material-ui/core/Typography";
 import MobileStepper from "@material-ui/core/MobileStepper";
 // import Clock from "./Clock";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Temperature from "./Temperature";
 import ApiRequest from "../Utils/ApiResquest";
 
@@ -48,9 +49,9 @@ function WeatherCard() {
       ) : isLoading ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
-            <Typography align='center' variant='h5'>
-              Loading...This will take a second
-            </Typography>
+            <div style={{ display: "flex", height: "auto" }}>
+              <CircularProgress style={{ margin: "auto" }} />
+            </div>
           </CardContent>
         </Card>
       ) : dataReceived !== null ? (

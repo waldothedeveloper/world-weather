@@ -14,7 +14,7 @@ export const useStyles = makeStyles(theme => ({
     flexWrap: "wrap",
     justifyContent: "center",
     width: 900,
-    marginBottom: theme.spacing(6),
+    marginBottom: "-80px",
     backgroundColor: "#ffffff",
     backgroundImage: "linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)",
     boxShadow:

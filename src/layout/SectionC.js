@@ -4,8 +4,16 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   root: {
+    // original blue gradient: "linear-gradient( 135deg, #000428 0.8%, #004e92 100%)"
+    // taken from css-tricks: linear-gradient(to right,#ff8a00,#da1b60)
+    // taken from Stripe? linear-gradient(rgb(28, 210, 242), rgb(68, 0, 204))
     backgroundImage: "linear-gradient( 135deg, #000428 0.8%, #004e92 100%)",
-    padding: 100
+    padding: 100,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: 'space-around',
+    flexWrap: 'nowrap',
+    flexDirection: 'row'
     // height: "30rem"
     // clipPath: "inset(13px -50px -50px -50px round 150px)"
   }

@@ -9,5 +9,8 @@ export const useStyles = makeStyles(theme => ({
   },
   gridList2: {
     padding: 10
+  },
+  loader: {
+    margin: "auto"
   }
 }));
