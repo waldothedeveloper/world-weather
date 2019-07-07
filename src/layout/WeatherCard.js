@@ -16,11 +16,11 @@ import ApiRequest from "../Utils/ApiResquest";
 
 function WeatherCard() {
   const [{ data, isError, isLoading }] = ApiRequest();
-  console.log("isError: ", isError);
+  // console.log("isError: ", isError);
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
-  console.log("activeStep: ", activeStep);
+  // console.log("activeStep: ", activeStep);
   const [test, setTest] = useState(false);
 
   const dataReceived = data;

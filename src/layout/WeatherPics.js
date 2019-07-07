@@ -11,7 +11,7 @@ function WeatherPics() {
 
   const [{ data, isError, isLoading }] = PexelApiRequest();
   const images = data;
-  console.log("images from weatherpic: ", images);
+  // console.log("images from weatherpic: ", images);
 
   //calling the random pics
   if (typeof images.photos !== "undefined") {

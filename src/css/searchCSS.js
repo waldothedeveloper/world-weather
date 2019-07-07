@@ -43,9 +43,4 @@ export const useStyles = makeStyles(theme => ({
   autoComplete: {
     display: "none"
   }
-  // divider: {
-  //   width: 1.2,
-  //   height: 34,
-  //   margin: 4
-  // }
 }));
