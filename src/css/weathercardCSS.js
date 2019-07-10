@@ -16,7 +16,8 @@ export const useStyles = makeStyles(theme => ({
     width: 900,
     marginBottom: "-80px",
     backgroundColor: "#ffffff",
-    backgroundImage: "linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)",
+    // linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)
+    backgroundImage: "linear-gradient(315deg, #fdfdfd 0%, #fefefe 74%)",
     boxShadow:
       "0 7px 13px -3px rgba(45,35,66,0.3), 0 8px 10px 0 rgba(45,35,66,0.4)"
   },
