@@ -121,7 +121,8 @@ function Search() {
             required={true}
             type='text'
             placeholder='Search any City or Place in the USA'
-            inputProps={{ maxLength: 5 }}
+            // This property below is to limit the length of the input
+            // inputProps={{ maxLength: 5 }}
           />
           <PoweredBy />
           {/* <Divider className={classes.divider} /> */}

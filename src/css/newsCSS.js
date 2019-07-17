@@ -61,11 +61,13 @@ export const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column"
   },
+  imgWrapper: {
+    paddingRight: "2.5em",
+    objectFit: "cover"
+  },
   img: {
-    objectFit: "cover",
-    width: "180px",
-    height: "180px",
-    paddingRight: "2.5em"
+    maxWidth: "100%",
+    height: "auto"
   },
   newsFeed: {
     margin: "6px 0 0 0",
