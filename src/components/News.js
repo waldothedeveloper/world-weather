@@ -47,14 +47,14 @@ function News() {
         <List className={classes.root}>
           {data.map((article, id) => {
             return (
-              <Grid container direction='row' justify='center' key={id}>
-                <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
-                  <Link
-                    className={classes.links}
-                    href={article.url}
-                    target='_blank'
-                    rel='noreferrer'
-                  >
+              <Link
+                className={classes.links}
+                href={article.url}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <Grid container direction='row' justify='center' key={id}>
+                  <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
                     <figure className='imgWrapper'>
                       <img
                         className={classes.img}
@@ -65,15 +65,8 @@ function News() {
                         alt={article.title}
                       />
                     </figure>
-                  </Link>
-                </Grid>
-                <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-                  <Link
-                    className={classes.links}
-                    href={article.url}
-                    target='_blank'
-                    rel='noreferrer'
-                  >
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
                     <Typography
                       className={classes.title}
                       variant='h4'
@@ -98,14 +91,14 @@ function News() {
                     >
                       {article.content}
                     </Typography>
-                  </Link>
+                  </Grid>
+                  <Divider
+                    className={classes.divisor}
+                    variant='inset'
+                    component='li'
+                  />
                 </Grid>
-                <Divider
-                  className={classes.divisor}
-                  variant='inset'
-                  component='li'
-                />
-              </Grid>
+              </Link>
             );
           })}
         </List>
