@@ -7,40 +7,28 @@ export const useStyles = makeStyles(theme => ({
     overflow: "auto",
     maxHeight: 450
   },
-  card: {
-    display: "flex"
+
+  cont: {
+    padding: "3.5rem"
   },
-  details: {
+
+  card: {
     display: "flex",
     flexDirection: "column"
   },
-  content: {
-    flex: "1 0 auto"
-  },
-  cover: {
-    width: "2rem",
-    height: "2rem"
-  },
-  controls: {
-    display: "flex",
-    alignItems: "center",
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
-  },
-  playIcon: {
-    height: 38,
-    width: 38
-  },
+
   maintitle: {
     color: "#FEFEFE",
     fontWeight: 700
   },
+
   link: {
-    color: "#fefefe",
+    color: "#2A5DB0",
     fontSize: "1rem",
     fontWeight: 500,
     alignSelf: "center"
   },
+
   news: {
     width: "100%",
     alignItems: "center",
@@ -49,39 +37,36 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: "space-between",
     marginBottom: "1.2rem"
   },
+
   divide: {
     backgroundColor: "#e7f1f7"
   },
+
   divisor: {
     backgroundColor: "#e7f1f7",
     marginLeft: "12rem",
     marginRight: "2rem"
   },
-  inline: {
-    display: "flex",
-    flexDirection: "column"
-  },
+
   imgWrapper: {
-    paddingRight: "2.5em",
-    objectFit: "cover"
+    paddingRight: "2.5em"
   },
+
   img: {
     maxWidth: "100%",
     height: "auto"
   },
-  newsFeed: {
-    margin: "6px 0 0 0",
-    flex: "1 1 auto",
-    minWidth: 0
-  },
+
   title: {
     color: "#fefefe"
   },
+
   subtitle: {
     color: "#eaeaea"
   },
+
   links: {
-    color: "#fa113d"
+    color: "#2A5DB0"
   },
   "@global": {
     "*::-webkit-scrollbar": {

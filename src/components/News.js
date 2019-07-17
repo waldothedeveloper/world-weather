@@ -31,13 +31,9 @@ function News() {
       <Divider className={classes.divide} variant='fullWidth' />
       {isError ? (
         <Card className={classes.card}>
-          <div className={classes.details}>
-            <CardContent className={classes.content}>
-              <Typography component='h5' variant='h5'>
-                Something went wrong...Try again
-              </Typography>
-            </CardContent>
-          </div>
+          <Typography component='h5' variant='h5'>
+            Something went wrong...Try again
+          </Typography>
         </Card>
       ) : isLoading ? (
         <div style={{ display: "flex", height: "auto" }}>
@@ -52,10 +48,16 @@ function News() {
                 href={article.url}
                 target='_blank'
                 rel='noreferrer'
+                key={id}
               >
-                <Grid container direction='row' justify='center' key={id}>
+                <Grid
+                  className={classes.cont}
+                  container
+                  direction='row'
+                  justify='center'
+                >
                   <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
-                    <figure className='imgWrapper'>
+                    <figure className={classes.imgWrapper}>
                       <img
                         className={classes.img}
                         src={
