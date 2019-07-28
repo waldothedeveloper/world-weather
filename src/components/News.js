@@ -3,7 +3,6 @@ import Divider from "@material-ui/core/Divider";
 import NewsApi_Request from "../Utils/NewsApi_Request";
 import Link from "@material-ui/core/Link";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import List from "@material-ui/core/List";
@@ -11,12 +10,13 @@ import { useStyles } from "../css/newsCSS";
 import Grid from "@material-ui/core/Grid";
 
 // This resolves to nothing and doesn't affect browser history
+//eslint-disable-next-lines
 const dudUrl = "javascript:;";
 
 function News() {
   const classes = useStyles();
   const [{ data, isError, isLoading }] = NewsApi_Request();
-  console.log("data: ", data);
+  // console.log("data: ", data);
 
   return (
     <>

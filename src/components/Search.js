@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useStyles } from "../css/searchCSS";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
@@ -10,13 +10,14 @@ import ListItem from "@material-ui/core/ListItem";
 import Modal from "@material-ui/core/Modal";
 import SingleCityCard from "../layout/SingleCityCard";
 import algoliasearch from "algoliasearch";
+import axios from "axios";
 import {
   InstantSearch,
   connectAutoComplete,
   connectSearchBox,
   PoweredBy
 } from "react-instantsearch-dom";
-import { Typography } from "@material-ui/core";
+import CustomClearResults from "./CustomClearResults";
 
 //This is the Algolia API keys
 const searchClient = algoliasearch(
@@ -30,7 +31,67 @@ const searchClient = algoliasearch(
 function Search() {
   const classes = useStyles();
   const [{ data, isError, isLoading }, setUrl] = ApiRequest();
+  const [query, setQuery] = useState(null);
+  const [currentVal, setCurrentVal] = useState("");
+  console.log("currentVal: ", currentVal);
   const [openModal, setOpenModal] = React.useState(false);
+  const [zipLoading, setZipLoading] = useState(false);
+  const [zipError, setZipError] = useState(false);
+  const [zipData, setZipData] = useState([]);
+  console.log("zipData: ", zipData);
+
+  const zipvalidate = `https://us-zipcode.api.smartystreets.com/lookup?auth-id=${
+    process.env.REACT_APP_SMARTYSTREETS_API_KEY
+  }&auth-token=${
+    process.env.REACT_APP_SMARTYSTREETS_AUTH_TOKEN
+  }&zipcode=${query}`;
+
+  //checking if the input from user have the format of a USA zipcode like 5 or 5-4 digits
+  const isValidUSZipCode = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(query);
+
+  useEffect(() => {
+    if (isValidUSZipCode) {
+      console.log("Valid zipcode format go get where is it in USA");
+      //fetch the valid zipcode location
+      const fetchZipData = async () => {
+        setZipLoading(true);
+        try {
+          const result = await axios(zipvalidate);
+          setZipData(result);
+        } catch (error) {
+          setZipError(true);
+          console.log(`There was a problem with the request ${error}`);
+        }
+        setZipLoading(false);
+      };
+
+      fetchZipData();
+
+      // IF there's no errors from the zipcode validation api then
+      // go and call the weathermap API to get actual weather
+
+      // if (!zipError && !zipLoading) {
+      //   setUrl(
+      //     `http://api.openweathermap.org/data/2.5/weather?zip=${
+      //       query
+      //     },${query.country.toLowerCase()}&units=metric&APPID=${
+      //       process.env.REACT_APP_OPENWEATHERMAP_API_KEY
+      //     }`
+      //   );
+      //   handleOpen();
+      // }
+    } else {
+      console.log("Probably not a number...");
+      //   setUrl(
+      //     `http://api.openweathermap.org/data/2.5/weather?q=${
+      //       query.name
+      //     },${query[1].country.toLowerCase()}&units=metric&APPID=${
+      //       process.env.REACT_APP_OPENWEATHERMAP_API_KEY
+      //     }`
+      //   );
+      //   handleOpen();
+    }
+  });
 
   //Function to open to Modal
   const handleOpen = () => {
@@ -42,61 +103,21 @@ function Search() {
     setOpenModal(false);
   };
 
-  function requestWeatherInfo(e, query) {
-    e.preventDefault();
-    console.log("query: ", query);
-
-    //  ZIPCODE validation keys =>  https://account.smartystreets.com/#keys
-    const apiZIP = process.env.REACT_APP_SMARTYSTREETS_API_KEY;
-
-    //checking if the input from user is a valid US zipcode
-    const isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(query);
-
-    if (isValidZip) {
-      // console.log("Valid US Code");
-      setUrl(
-        `http://api.openweathermap.org/data/2.5/weather?zip=${isValidZip},${query.country.toLowerCase()}&units=metric&APPID=${
-          process.env.REACT_APP_OPENWEATHERMAP_API_KEY
-        }`
-      );
-      handleOpen();
-    } else {
-      setUrl(
-        `http://api.openweathermap.org/data/2.5/weather?q=${
-          query.name
-        },${query.country.toLowerCase()}&units=metric&APPID=${
-          process.env.REACT_APP_OPENWEATHERMAP_API_KEY
-        }`
-      );
-      handleOpen();
-    }
-  }
-
   // Single index search return from Algolia
   // Some rendering logic is being handled here
   const Autocomplete = ({ currentRefinement, hits }) => {
+    console.log("hits: ", hits);
+
     return (
       <>
         {currentRefinement === "" ? (
           <div className={classes.autoComplete} />
-        ) : !isNaN(currentRefinement) ? (
-          <List className={classes.lists}>
-            <ListItem>
-              <Typography>Is this a US zipcode???</Typography>
-            </ListItem>
-          </List>
-        ) : hits.length === 0 ? (
-          <List className={classes.listsError}>
-            <ListItem>
-              <Typography>Please enter a valid USA city...</Typography>
-            </ListItem>
-          </List>
         ) : (
           <List className={classes.lists}>
             {hits.map(hit => (
               <ListItem
                 button
-                onClick={e => requestWeatherInfo(e, hit)}
+                onClick={e => setQuery([e, hit])}
                 key={hit.objectID}
               >
                 {hit.name}
@@ -110,18 +131,22 @@ function Search() {
 
   //Search component Material UI based
   const MaterialUISearchBox = ({ currentRefinement, refine }) => {
+    console.log("currentRefinement: ", currentRefinement);
     return (
       <>
         <Paper className={classes.root}>
           <InputBase
-            onChange={e => refine(e.target.value)}
+            onChange={e => {
+              refine(e.target.value);
+              // setCurrentVal(currentRefinement);
+            }}
             value={currentRefinement}
             className={classes.input}
             autoFocus={true}
             required={true}
             type='text'
-            placeholder='Search any City or Place in the USA'
-            // This property below is to limit the length of the input
+            placeholder='Search any City or ZipCode in the USA'
+            // This property below is to limit the length of the input when is a zipcode
             // inputProps={{ maxLength: 5 }}
           />
           <PoweredBy />
@@ -133,6 +158,7 @@ function Search() {
           >
             <SearchIcon />
           </IconButton>
+          <CustomClearResults clearsQuery />
         </Paper>
       </>
     );

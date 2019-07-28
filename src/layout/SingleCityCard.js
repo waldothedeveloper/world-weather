@@ -10,7 +10,6 @@ import Typography from "@material-ui/core/Typography";
 import Temperature from "./Temperature";
 
 export default function SimpleCard(props) {
-  console.log("props on simpleCard: ", props);
   const classes = useStyles();
   const dataReceived = props.data;
   const isLoading = props.isLoading;
