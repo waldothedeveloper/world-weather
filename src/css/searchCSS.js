@@ -34,13 +34,10 @@ export const useStyles = makeStyles(theme => ({
   listsError: {
     width: "100%",
     maxWidth: 500,
-    background: "#fefefe",
-    color: "#DC143C",
+    background: "#c50e29",
+    color: "#fefefe",
     boxShadow:
       "0 7px 13px -3px rgba(45,35,66,0.3), 0 2px 4px 0 rgba(45,35,66,0.4)",
     borderRadius: "0 0 24px 24px"
-  },
-  autoComplete: {
-    display: "none"
   }
 }));

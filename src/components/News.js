@@ -10,7 +10,7 @@ import { useStyles } from "../css/newsCSS";
 import Grid from "@material-ui/core/Grid";
 
 // This resolves to nothing and doesn't affect browser history
-//eslint-disable-next-lines
+//eslint-disable-next-line
 const dudUrl = "javascript:;";
 
 function News() {
