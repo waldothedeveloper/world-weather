@@ -4,19 +4,33 @@ import InputBase from "@material-ui/core/InputBase";
 import { PoweredBy } from "react-instantsearch-dom";
 import CustomClearResults from "./CustomClearResults";
 import { useStyles } from "../css/searchCSS";
-//Search component Material UI based
+import MessagePopover from "./Popover";
+import { PopoverCustomHook } from "./PopoverCustomHook";
+
 export const MaterialUISearchBox = ({ currentRefinement, refine }) => {
   const classes = useStyles();
+
+  const [{ anchorEl }, handleClick] = PopoverCustomHook();
+  // console.log("anchorEl on MaterialUISearchBox: ", anchorEl);
+
   return (
     <form
+      onKeyPress={e => {
+        // console.log("event on form: ", e.currentTarget);
+        if (currentRefinement !== "" && e.charCode === 13) {
+          console.log("Please select a city from the dropdown");
+          handleClick(e.currentTarget);
+        }
+        // e.preventDefault();
+      }}
       onSubmit={e => {
         e.preventDefault();
-        console.log("Form submitted...please select a city");
+        // console.log("Form submitted", e);
       }}
     >
+      <MessagePopover anchorEl={anchorEl} handleClick={handleClick} />
       <Paper className={classes.root}>
         <InputBase
-          onSubmit={e => e.preventDefault()}
           onChange={e => refine(e.target.value)}
           value={currentRefinement}
           className={classes.input}

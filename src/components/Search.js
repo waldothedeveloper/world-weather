@@ -65,7 +65,7 @@ function Search() {
   };
   return (
     <InstantSearch searchClient={searchClient} indexName='us_cities'>
-      <ConnectedSearchBox />
+      <ConnectedSearchBox queryHits={queryHits} />
       <CustomAutocomplete setQueryHits={setQueryHits} defaultRefinement='' />
       <Modal
         aria-labelledby='single-city-modal-card'
