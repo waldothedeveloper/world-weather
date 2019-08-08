@@ -15,17 +15,10 @@ export const MaterialUISearchBox = ({ currentRefinement, refine }) => {
 
   return (
     <form
-      onKeyPress={e => {
-        // console.log("event on form: ", e.currentTarget);
-        if (currentRefinement !== "" && e.charCode === 13) {
-          console.log("Please select a city from the dropdown");
-          handleClick(e.currentTarget);
-        }
-        // e.preventDefault();
-      }}
       onSubmit={e => {
         e.preventDefault();
-        // console.log("Form submitted", e);
+        console.log("Form submitted");
+        handleClick(e.currentTarget);
       }}
     >
       <MessagePopover anchorEl={anchorEl} handleClick={handleClick} />

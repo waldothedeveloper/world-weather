@@ -21,7 +21,7 @@ function MessagePopover({ anchorEl, handleClick }) {
   // console.log("anchorEl on MessagePopover: ", anchorEl);
 
   const open = Boolean(anchorEl);
-  console.log("open: ", open);
+  // console.log("open: ", open);
 
   return (
     <div>

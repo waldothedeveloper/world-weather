@@ -21,7 +21,7 @@ const searchClient = algoliasearch(
 // This is the pride colors as a gradient but I like it, doesn't look bad
 // linear-gradient(to right,#DF4998,#39BDB1,#00a9e5,#fed10a)
 
-function Search() {
+function Search(props) {
   const classes = useStyles();
   const [{ data, isError, isLoading }, setUrl] = ApiRequest();
   const [openModal, setOpenModal] = React.useState(false);
@@ -49,7 +49,7 @@ function Search() {
     setOpenModal(true);
   };
 
-  //function to close the Modal
+  // function to close the Modal
   const handleClose = () => {
     setOpenModal(false);
   };
@@ -65,8 +65,11 @@ function Search() {
   };
   return (
     <InstantSearch searchClient={searchClient} indexName='us_cities'>
+      {/* This is the search box  */}
       <ConnectedSearchBox queryHits={queryHits} />
+      {/* This is the list of hits coming from Algolia */}
       <CustomAutocomplete setQueryHits={setQueryHits} defaultRefinement='' />
+
       <Modal
         aria-labelledby='single-city-modal-card'
         aria-describedby='single-city-modal-card'
