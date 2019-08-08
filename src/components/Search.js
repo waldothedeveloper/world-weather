@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
 import { useStyles } from "../css/searchCSS";
 import ApiRequest from "../Utils/ApiResquest";
-import { Autocomplete } from "./Autocomplete";
-import { MaterialUISearchBox } from "./MaterialUISearchBox";
+// import { MaterialUISearchBox } from "./MaterialUISearchBox";
 import Modal from "@material-ui/core/Modal";
 import SingleCityCard from "../layout/SingleCityCard";
 import algoliasearch from "algoliasearch";
-import {
-  InstantSearch,
-  connectAutoComplete,
-  connectSearchBox
-} from "react-instantsearch-dom";
+import { InstantSearch } from "react-instantsearch-dom";
+import { HOCautoCompleted } from "./CustomAutoComplete";
 
 //This is the Algolia API keys
 const searchClient = algoliasearch(
@@ -55,8 +51,7 @@ function Search(props) {
   };
 
   //Connecting MAterial Ui components to the Algolia connectors, then render those
-  const CustomAutocomplete = connectAutoComplete(Autocomplete);
-  const ConnectedSearchBox = connectSearchBox(MaterialUISearchBox);
+  // const ConnectedSearchBox = connectSearchBox(MaterialUISearchBox);
 
   const modalStyles = {
     top: "50%",
@@ -66,9 +61,13 @@ function Search(props) {
   return (
     <InstantSearch searchClient={searchClient} indexName='us_cities'>
       {/* This is the search box  */}
-      <ConnectedSearchBox queryHits={queryHits} />
+      {/* <ConnectedSearchBox queryHits={queryHits} /> */}
       {/* This is the list of hits coming from Algolia */}
-      <CustomAutocomplete setQueryHits={setQueryHits} defaultRefinement='' />
+      <HOCautoCompleted
+        queryHits={queryHits}
+        setQueryHits={setQueryHits}
+        defaultRefinement=''
+      />
 
       <Modal
         aria-labelledby='single-city-modal-card'

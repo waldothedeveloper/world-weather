@@ -7,8 +7,13 @@ import { useStyles } from "../css/searchCSS";
 import MessagePopover from "./Popover";
 import { PopoverCustomHook } from "./PopoverCustomHook";
 
-export const MaterialUISearchBox = ({ currentRefinement, refine }) => {
+export const MaterialUISearchBox = ({
+  currentRefinement,
+  refine,
+  ...props
+}) => {
   const classes = useStyles();
+  // console.log("props hits on MAterialUISearchBox", hits);
 
   const [{ anchorEl }, handleClick] = PopoverCustomHook();
   // console.log("anchorEl on MaterialUISearchBox: ", anchorEl);
@@ -21,7 +26,11 @@ export const MaterialUISearchBox = ({ currentRefinement, refine }) => {
         handleClick(e.currentTarget);
       }}
     >
-      <MessagePopover anchorEl={anchorEl} handleClick={handleClick} />
+      <MessagePopover
+        anchorEl={anchorEl}
+        handleClick={handleClick}
+        rest={props}
+      />
       <Paper className={classes.root}>
         <InputBase
           onChange={e => refine(e.target.value)}
