@@ -22,14 +22,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ids = ["257360", "287229", "248174"];
 //Pexels requires a special auth header
 const GalleryPreview = () => {
   const classes = useStyles();
   const [photos, setPhoto1] = useState({ photo1: "", photo2: "", photo3: "" });
-  // console.log("photos: ", photos);
   const [error, isError] = useState(false);
   const [loading, isLoading] = useState(false);
+
   // fetchPhoto1
   useEffect(() => {
     const CancelToken = axios.CancelToken;
@@ -42,12 +41,12 @@ const GalleryPreview = () => {
         const result1 = await axios(
           {
             method: "GET",
-            url: `https://api.pexels.com/v1/photos/${ids[0]}`,
+            url: `https://api.pexels.com/v1/photos/257360`,
             headers: { Authorization: process.env.REACT_APP_PEXELS_API_KEY }
           },
           { cancelToken: source.token }
         );
- //get the second photo 2
+        //get the second photo 2
         const result2 = await axios(
           {
             method: "GET",
@@ -56,7 +55,7 @@ const GalleryPreview = () => {
           },
           { cancelToken: source.token }
         );
- //get the third photo 3
+        //get the third photo 3
         const result3 = await axios(
           {
             method: "GET",
@@ -106,10 +105,8 @@ const GalleryPreview = () => {
           align='center'
           variant='body1'
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
+          When an unknown printer took a galley of type and scrambled it to make
+          a type specimen book.
         </Typography>
       </Grid>
       {loading ? (

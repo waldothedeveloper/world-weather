@@ -3,7 +3,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import { useStyles } from "../css/searchCSS";
 
-const symRegex = /[!@#$%^&*(),.?":{}|<>]/;
+const symRegex = /[`~!@#$%^&*(),.?;"':{}|/<>[\\\]]/;
 
 // Single index search return from Algolia
 // Some rendering logic is being handled here
