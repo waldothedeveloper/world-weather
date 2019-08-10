@@ -16,9 +16,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function MessagePopover({ anchorEl, handleClick, hits, rest }) {
-  console.log("rest: ", rest);
-  // console.log("hits: ", hits);
+function MessagePopover({ anchorEl, handleClick, rest }) {
+  const { hits } = rest;
   const classes = useStyles();
   // console.log("anchorEl on MessagePopover: ", anchorEl);
 
@@ -41,6 +40,8 @@ function MessagePopover({ anchorEl, handleClick, hits, rest }) {
         </Popper>
       </div>
     );
+  } else if (hits.length === 20) {
+    return null;
   } else {
     return (
       <div>
