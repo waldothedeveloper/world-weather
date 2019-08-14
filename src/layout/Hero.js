@@ -20,20 +20,26 @@ function Hero() {
       <Grid item lg={6} md={6} sm={6}>
         <Typography className={classes.type} variant='h3' gutterBottom>
           Find out "weather" <br /> you should go camping <br /> or stay cozy at
-          home
+          home.
         </Typography>
         <Typography className={classes.subtitles} variant='h6' gutterBottom>
           Find the local weather <br />
-          in any city of USA
+          in any city of the USA.
         </Typography>
         {/* Here is where the Search Component should go */}
         <Search />
         <Typography className={classes.subtitles} variant='h6' gutterBottom>
-          Best way to know your city weather easily
+          Best way to know your city weather easily.
         </Typography>
       </Grid>
       <Grid item lg={6} md={6} sm={6}>
-        <img width='100%' height='auto' alt='campfire' src={campfire} />
+        <img
+          loading='lazy'
+          width='100%'
+          height='auto'
+          alt='campfire'
+          src={campfire}
+        />
       </Grid>
     </Grid>
   );

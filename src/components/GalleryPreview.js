@@ -14,8 +14,7 @@ const useStyles = makeStyles(theme => ({
     padding: "0 120px 0 120px"
   },
   twelve2: {
-    paddingTop: "12rem",
-    marginRight: "-26%"
+    paddingTop: "12rem"
   },
   root1: {
     marginTop: "4rem"
@@ -123,7 +122,6 @@ const GalleryPreview = () => {
             <figure>
               <img
                 className={classes.image}
-                loading='lazy'
                 src={
                   typeof photos.photo1.src === "undefined"
                     ? null
@@ -147,7 +145,6 @@ const GalleryPreview = () => {
               <figure style={{ margin: 0, padding: 0 }}>
                 <img
                   className={classes.image}
-                  loading='lazy'
                   src={
                     typeof photos.photo2.src === "undefined"
                       ? null
@@ -173,7 +170,6 @@ const GalleryPreview = () => {
               <figure>
                 <img
                   className={classes.image}
-                  loading='lazy'
                   src={
                     typeof photos.photo3.src === "undefined"
                       ? null

@@ -1,5 +1,5 @@
 export const shuffle = array => {
-  var currentIndex = array.length,
+  let currentIndex = array.length,
     temporaryValue,
     randomIndex;
 

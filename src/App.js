@@ -5,6 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import WeatherInfo from "./layout/WeatherInfo";
 import WeatherPics from "./layout/WeatherPics";
 import WeatherCard from "./layout/WeatherCard";
+import WeatherWarning from "./layout/WeatherWarning";
 import GalleryPreview from "./components/GalleryPreview";
 import News from "./components/News";
 import SectionA from "./layout/SectionA";
@@ -20,7 +21,11 @@ function App() {
       <SectionA hero={<Hero />} weatherCard={<WeatherCard />} />
       <SectionB partA={<WeatherInfo />} partB={<WeatherPics />} />
       <SectionC news={<News />} />
-      <SectionD galleryPreview={<GalleryPreview />} />
+      <SectionD
+        galleryPreview={<GalleryPreview />}
+        partC={<WeatherInfo />}
+        partD={<WeatherWarning />}
+      />
     </React.Fragment>
   );
 }

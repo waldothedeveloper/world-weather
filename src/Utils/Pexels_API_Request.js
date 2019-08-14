@@ -10,6 +10,7 @@ const PexelApiRequest = () => {
     "https://api.pexels.com/v1/search?query=bad+weather&per_page=25&page=1"
   );
 
+  console.log("url in Pexels APi request:", url);
   //Pexels requires a special auth header
   const config = {
     method: "GET",
@@ -18,6 +19,7 @@ const PexelApiRequest = () => {
   };
 
   useEffect(() => {
+    console.warn("Pexels API request updated cuz url changed");
     const fetchData = async () => {
       setIsLoading(true);
       try {
