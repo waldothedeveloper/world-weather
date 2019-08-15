@@ -12,6 +12,12 @@ import SectionA from "./layout/SectionA";
 import SectionB from "./layout/SectionB";
 import SectionC from "./layout/SectionC";
 import SectionD from "./layout/SectionD";
+import {
+  weatherInfo1,
+  weatherInfo2,
+  weatherInfo3,
+  loremInpsun
+} from "./Utils/weatherText";
 
 function App() {
   return (
@@ -19,11 +25,22 @@ function App() {
       <CssBaseline />
       <AppBar />
       <SectionA hero={<Hero />} weatherCard={<WeatherCard />} />
-      <SectionB partA={<WeatherInfo />} partB={<WeatherPics />} />
+      <SectionB
+        partA={
+          <WeatherInfo
+            weatherInfo1={weatherInfo1}
+            weatherInfo2={weatherInfo2}
+            loremInpsun={loremInpsun}
+          />
+        }
+        partB={<WeatherPics />}
+      />
       <SectionC news={<News />} />
       <SectionD
         galleryPreview={<GalleryPreview />}
-        partC={<WeatherInfo />}
+        partC={
+          <WeatherInfo weatherInfo1={weatherInfo3} loremInpsun={loremInpsun} />
+        }
         partD={<WeatherWarning />}
       />
     </React.Fragment>

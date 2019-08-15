@@ -6,11 +6,8 @@ const PexelApiRequest = () => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const abortController = new AbortController();
-  const [url, setUrl] = useState(
-    "https://api.pexels.com/v1/search?query=bad+weather&per_page=25&page=1"
-  );
+  const [url, setUrl] = useState("");
 
-  console.log("url in Pexels APi request:", url);
   //Pexels requires a special auth header
   const config = {
     method: "GET",
@@ -19,19 +16,24 @@ const PexelApiRequest = () => {
   };
 
   useEffect(() => {
-    console.warn("Pexels API request updated cuz url changed");
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const result = await axios(config);
-        setData(result.data);
-      } catch (error) {
-        setIsError(true);
-        console.log(`There is a problem with the request ${error}`);
-      }
-      setIsLoading(false);
-    };
-    fetchData();
+    console.log("Pexels-API-Request");
+
+    if (url !== "") {
+      console.log("url changed");
+      const fetchData = async () => {
+        setIsLoading(true);
+        try {
+          const result = await axios(config);
+          setData(result.data);
+        } catch (error) {
+          setIsError(true);
+          console.log(`There is a problem with the request ${error}`);
+        }
+        setIsLoading(false);
+      };
+      fetchData();
+    }
+
     return function cleanup() {
       abortController.abort();
     };

@@ -9,8 +9,16 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 function WeatherPics() {
   const classes = useStyles();
 
-  const [{ data, isError, isLoading }] = PexelApiRequest();
+  const [{ data, isError, isLoading }, setUrl] = PexelApiRequest();
   const images = data;
+
+  React.useEffect(() => {
+    console.log("Weather-Pics");
+    setUrl(
+      "https://api.pexels.com/v1/search?query=bad+weather&per_page=25&page=1"
+    );
+    //eslint-disable-next-line
+  }, []);
 
   //calling the random pics
   if (typeof images.photos !== "undefined") {
