@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     padding: "0 120px 0 120px"
   },
   twelve2: {
-    paddingTop: "12rem"
+    paddingTop: "6rem"
   },
   root1: {
     marginTop: "4rem"
@@ -85,7 +85,12 @@ const GalleryPreview = () => {
   }, []);
 
   return (
-    <Grid container direction='row' alignItems='center'>
+    <Grid
+      container
+      direction='row'
+      alignItems='center'
+      style={{ overflow: "hidden" }}
+    >
       <Grid className={classes.root} item xs={12} sm={12} md={6} lg={6} xl={6}>
         <Typography align='center' variant='h4'>
           Weather in picture
@@ -141,7 +146,7 @@ const GalleryPreview = () => {
             direction='row'
             justify='space-evenly'
           >
-            <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
+            <Grid item xs={12} sm={12} md={7} lg={7} xl={7}>
               <figure style={{ margin: 0, padding: 0 }}>
                 <img
                   className={classes.image}
@@ -163,11 +168,11 @@ const GalleryPreview = () => {
               item
               xs={12}
               sm={12}
-              md={7}
-              lg={7}
-              xl={7}
+              md={4}
+              lg={4}
+              xl={4}
             >
-              <figure>
+              <figure style={{ margin: "0 -22rem 0 0", padding: 0 }}>
                 <img
                   className={classes.image}
                   src={
