@@ -7,11 +7,14 @@ import WeatherPics from "./layout/WeatherPics";
 import WeatherCard from "./layout/WeatherCard";
 import WeatherWarning from "./layout/WeatherWarning";
 import GalleryPreview from "./components/GalleryPreview";
+import BottomNav from "./components/BottomNav";
+import LastBottomNav from "./layout/LastBottomNav";
 import News from "./components/News";
 import SectionA from "./layout/SectionA";
 import SectionB from "./layout/SectionB";
 import SectionC from "./layout/SectionC";
 import SectionD from "./layout/SectionD";
+import SectionE from "./layout/SectionE";
 import {
   weatherInfo1,
   weatherInfo2,
@@ -43,6 +46,7 @@ function App() {
         }
         partD={<WeatherWarning />}
       />
+      <SectionE bottomNav={<BottomNav />} lastBottomNav={<LastBottomNav />} />
     </React.Fragment>
   );
 }

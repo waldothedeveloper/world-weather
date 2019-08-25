@@ -13,7 +13,6 @@ function WeatherPics() {
   const images = data;
 
   React.useEffect(() => {
-    console.log("Weather-Pics");
     setUrl(
       "https://api.pexels.com/v1/search?query=bad+weather&per_page=25&page=1"
     );
@@ -57,6 +56,7 @@ function WeatherPics() {
                 xl={6}
               >
                 <img
+                  loading='lazy'
                   className={classes.img}
                   src={images.photos[4].src.portrait}
                   alt={images.photos[4].photographer}
@@ -73,6 +73,7 @@ function WeatherPics() {
                 xl={6}
               >
                 <img
+                  loading='lazy'
                   className={classes.img}
                   src={images.photos[6].src.portrait}
                   alt={images.photos[6].photographer}
@@ -89,6 +90,7 @@ function WeatherPics() {
                 xl={12}
               >
                 <img
+                  loading='lazy'
                   src={images.photos[10].src.landscape}
                   alt={images.photos[10].photographer}
                   width='100%'

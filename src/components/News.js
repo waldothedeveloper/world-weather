@@ -47,7 +47,7 @@ function News() {
                 className={classes.links}
                 href={article.url}
                 target='_blank'
-                rel='noreferrer'
+                rel='noreferrer prefetch'
                 key={id}
               >
                 <Grid

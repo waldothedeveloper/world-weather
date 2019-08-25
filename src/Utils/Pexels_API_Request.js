@@ -16,10 +16,7 @@ const PexelApiRequest = () => {
   };
 
   useEffect(() => {
-    console.log("Pexels-API-Request");
-
     if (url !== "") {
-      console.log("url changed");
       const fetchData = async () => {
         setIsLoading(true);
         try {

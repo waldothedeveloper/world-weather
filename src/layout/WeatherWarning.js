@@ -11,10 +11,8 @@ function WeatherPics() {
 
   const [{ data, isError, isLoading }, setUrl] = PexelApiRequest();
   const images = data;
-  // console.log("images from weather-warning: ", images);
 
   React.useEffect(() => {
-    console.log("Weather-Warning");
     setUrl(
       "https://api.pexels.com/v1/search?query=poor+people&per_page=25&page=1"
     );
