@@ -126,6 +126,9 @@ const GalleryPreview = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <figure>
               <img
+                loading='lazy'
+                width='100%'
+                height='auto'
                 className={classes.image}
                 src={
                   typeof photos.photo1.src === "undefined"
@@ -149,6 +152,9 @@ const GalleryPreview = () => {
             <Grid item xs={12} sm={12} md={7} lg={7} xl={7}>
               <figure style={{ margin: 0, padding: 0 }}>
                 <img
+                  loading='lazy'
+                  width='100%'
+                  height='auto'
                   className={classes.image}
                   src={
                     typeof photos.photo2.src === "undefined"
@@ -174,6 +180,9 @@ const GalleryPreview = () => {
             >
               <figure style={{ margin: "0 -22rem 0 0", padding: 0 }}>
                 <img
+                  loading='lazy'
+                  width='100%'
+                  height='auto'
                   className={classes.image}
                   src={
                     typeof photos.photo3.src === "undefined"

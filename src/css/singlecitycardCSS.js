@@ -2,11 +2,15 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles(theme => ({
   card: {
+    [theme.breakpoints.down("sm")]: {
+      height: 280,
+      width: "100%"
+    },
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
     width: 700,
-    marginBottom: theme.spacing(6),
+    height: 317,
     backgroundColor: "#ffffff",
     backgroundImage: "linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)",
     boxShadow:

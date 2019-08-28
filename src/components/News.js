@@ -59,6 +59,9 @@ function News() {
                   <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
                     <figure className={classes.imgWrapper}>
                       <img
+                        loading='lazy'
+                        width='100%'
+                        height='auto'
                         className={classes.img}
                         src={
                           article.urlToImage ||

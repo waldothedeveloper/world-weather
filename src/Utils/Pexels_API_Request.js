@@ -8,20 +8,13 @@ const PexelApiRequest = () => {
   const abortController = new AbortController();
   const [url, setUrl] = useState("");
 
-  //Pexels requires a special auth header
-  const config = {
-    method: "GET",
-    url: url,
-    headers: { Authorization: process.env.REACT_APP_PEXELS_API_KEY }
-  };
-
   useEffect(() => {
     if (url !== "") {
       const fetchData = async () => {
         setIsLoading(true);
         try {
-          const result = await axios(config);
-          setData(result.data);
+          const result = await axios(url);
+          setData(result.data.results);
         } catch (error) {
           setIsError(true);
           console.log(`There is a problem with the request ${error}`);

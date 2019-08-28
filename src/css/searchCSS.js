@@ -2,6 +2,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles(theme => ({
   root: {
+    [theme.breakpoints.down("md")]: {
+      width: "auto",
+      margin: "1rem 2rem 1rem 2rem"
+    },
     marginTop: 20,
     padding: "4px",
     display: "flex",

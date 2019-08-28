@@ -57,7 +57,7 @@ function WeatherCard() {
       ) : dataReceived !== null ? (
         <Card raised={true} className={classes.card}>
           <CardContent className={classes.cardContent}>
-            <Typography className={classes.cityName} variant='h3'>
+            <Typography className={classes.cityName} variant='h4'>
               {dataReceived.data.list[activeStep].name}
             </Typography>
             <Temperature
@@ -67,17 +67,17 @@ function WeatherCard() {
               )}
             />
 
-            <Typography variant='h6' className={classes.colors}>
+            <Typography variant='body1' className={classes.colors}>
               {dataReceived.data.list[activeStep].weather[0].description}
             </Typography>
           </CardContent>
           <CardContent className={classes.cardContent}>
             {/* <Clock activeStep={activeStep} data={dataReceived.data.list} /> */}
-            <Typography variant='h6' className={classes.colors}>
+            <Typography variant='body2' className={classes.colors}>
               {" "}
               Humidity: {dataReceived.data.list[activeStep].main.humidity}
             </Typography>
-            <Typography variant='h6' className={classes.colors}>
+            <Typography variant='body2' className={classes.colors}>
               Wind Speed: {dataReceived.data.list[activeStep].wind.speed}
             </Typography>
           </CardContent>

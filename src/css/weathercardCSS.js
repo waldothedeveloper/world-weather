@@ -3,19 +3,28 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: "100%",
-    background: "none"
+    backgroundColor: "#fefefe !important",
+    width: "100%",
+    justifyContent: "space-between"
   },
   cityName: {
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.5rem"
+    },
     fontWeight: 900,
     paddingBottom: "0.35em"
   },
   card: {
+    [theme.breakpoints.down("sm")]: {
+      height: 280
+    },
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
     width: 900,
+    height: 317,
     zIndex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#fefefe",
     backgroundImage: "linear-gradient(315deg, #fdfdfd 0%, #fefefe 74%)",
     boxShadow:
       "0 7px 13px -3px rgba(45,35,66,0.3), 0 8px 10px 0 rgba(45,35,66,0.4)"
@@ -36,8 +45,9 @@ export const useStyles = makeStyles(theme => ({
     width: 50
   },
   actions: {
-    display: "block",
-    width: "100%"
+    display: "flex",
+    width: "100%",
+    justifyContent: "center"
   },
   cardContent: {
     width: "50%"
