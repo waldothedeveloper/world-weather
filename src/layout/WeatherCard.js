@@ -66,7 +66,6 @@ function WeatherCard() {
                 dataReceived.data.list[activeStep].main.temp
               )}
             />
-
             <Typography variant='body1' className={classes.colors}>
               {dataReceived.data.list[activeStep].weather[0].description}
             </Typography>

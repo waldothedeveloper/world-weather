@@ -20,7 +20,7 @@ function Hero() {
       <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
         <Typography
           className={classes.type}
-          variant='h4'
+          variant='h2'
           gutterBottom
           align='center'
         >

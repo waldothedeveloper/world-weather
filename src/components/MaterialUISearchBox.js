@@ -20,6 +20,7 @@ export const MaterialUISearchBox = ({
 
   return (
     <form
+      className={classes.InstantSearch}
       onSubmit={e => {
         e.preventDefault();
         console.log("Form submitted");

@@ -16,6 +16,14 @@ export const useStyles = makeStyles(theme => ({
     borderRadius: "0",
     backgroundColor: "#fefefe"
   },
+  InstantSearch: {
+    [theme.breakpoints.up("lg")]: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "flex"
+    }
+  },
   paper: {
     position: "absolute",
     outline: "none"
