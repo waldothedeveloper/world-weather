@@ -13,10 +13,7 @@ export const MaterialUISearchBox = ({
   ...props
 }) => {
   const classes = useStyles();
-  // console.log("props hits on MAterialUISearchBox", hits);
-
   const [{ anchorEl }, handleClick] = PopoverCustomHook();
-  // console.log("anchorEl on MaterialUISearchBox: ", anchorEl);
 
   return (
     <form

@@ -73,15 +73,9 @@ export default function Navigation() {
             switchButton ? `${classes.globalListVisible}` : classes.globalList
           }
         >
-          <Button className={`${classes.button} ${classes.globalListItem1}`}>
-            Local Weather
-          </Button>
-          <Button className={`${classes.button} ${classes.globalListItem2}`}>
-            About
-          </Button>
-          <Button className={`${classes.button} ${classes.globalListItem3}`}>
-            Contact
-          </Button>
+          <Button classes={{ root: classes.button }}>Local Weather</Button>
+          <Button classes={{ root: classes.button }}>About</Button>
+          <Button classes={{ root: classes.button }}>Contact</Button>
         </ul>
       </nav>
     </React.Fragment>

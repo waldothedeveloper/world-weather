@@ -9,28 +9,35 @@ export const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("sm")]: {
       fontSize: "1.6rem",
       padding: "1.8rem",
-      fontWeight: 600
+      fontWeight: 600,
+      textAlign: "center"
     },
     [theme.breakpoints.up("sm")]: {
       fontSize: "2.4rem",
       padding: "1.8rem",
-      fontWeight: 600
+      fontWeight: 600,
+      textAlign: "center"
     },
     [theme.breakpoints.up("lg")]: {
       fontSize: "2.8rem",
       padding: "2.8rem",
-      fontWeight: 700
+      fontWeight: 700,
+      textAlign: "left"
     }
   },
   subtitles: {
     [theme.breakpoints.down("sm")]: {
-      fontSize: "1rem"
+      fontSize: "1rem",
+      textAlign: "center"
     },
     [theme.breakpoints.up("sm")]: {
-      fontSize: "1.3rem"
+      fontSize: "1.3rem",
+      textAlign: "center"
     },
     [theme.breakpoints.up("lg")]: {
-      fontSize: "1.2rem"
+      fontSize: "1.2rem",
+      padding: "0 0 0 2.8rem",
+      textAlign: "left"
     },
     color: "#3C3D5A",
     marginTop: "0.35em",

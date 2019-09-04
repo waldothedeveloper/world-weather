@@ -14,16 +14,30 @@ export const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   checkedColor: {
-    color: "#fefefe !important"
+    color: "#fefefe !important",
+    backgroundColor: "transparent"
   },
   icon: {
     width: 48,
     height: 32,
-    padding: "0 !important"
+    padding: "0 !important",
+    "&:hover": {
+      backgroundColor: "transparent !important"
+    }
   },
   button: {
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "1.4rem !important",
+      transition: "font-size 300ms !important",
+      borderRadius: "0 !important",
+      "&:hover": {
+        fontSize: "1.6rem !important",
+        backgroundColor: "transparent !important"
+      }
+    },
     color: "#fefefe !important",
     fontWeight: 400,
+    transition: "font-size 500ms",
     "&:hover": {
       color: "#fefefe !important"
     }
@@ -36,6 +50,7 @@ export const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100vh"
   },
+
   //testing the apple way
   globalNav: {
     position: "fixed",
@@ -49,7 +64,6 @@ export const useStyles = makeStyles(theme => ({
     height: "48px",
     background: "#b5cbe1",
     fontSize: "17px",
-    // transition: "all 0.5s ease-out, background 1s ease-out",
     transitionDelay: "0.3s",
     overflowY: "hidden",
     webkitTransition:
@@ -62,7 +76,6 @@ export const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100%",
     background: "#24282d",
-    // transition: "all 0.3s ease-in, background 0.5s ease-in"
     transitionDelay: "0.3s",
     webkitTransition:
       "background .36s cubic-bezier(0.32, 0.08, 0.24, 1),height .56s cubic-bezier(0.52, 0.16, 0.24, 1)",
@@ -90,18 +103,17 @@ export const useStyles = makeStyles(theme => ({
       justifyContent: "space-between",
       alignItems: "center"
     },
+    [theme.breakpoints.up("lg")]: {
+      paddingLeft: "2.8rem !important",
+      paddingRight: "2.8rem !important",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      maxWidth: 1425
+    },
     width: "100%",
     overflow: "hidden",
     paddingLeft: "10px !important"
-  },
-  globalListItem1: {
-    transitionDelay: "150s"
-  },
-  globalListItem2: {
-    transitionDelay: "300s"
-  },
-  globalListItem3: {
-    transitionDelay: "450s"
   },
   globalList: {
     display: "flex",
@@ -122,17 +134,12 @@ export const useStyles = makeStyles(theme => ({
     visibility: "visible",
     display: "flex",
     flexDirection: "column",
-    // position: "absolute",
-    // top: "3.5rem",
-    // right: 0,
-    // bottom: 0,
-    // left: 0,
     maxWidth: 664,
     margin: "0 auto",
     padding: "45px 40px 8px",
     height: "100%",
     overflowY: "auto",
     transition: "visibility 0s linear 1s",
-    transitionDelay: 0,
+    transitionDelay: 0
   }
 }));

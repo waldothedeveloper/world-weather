@@ -14,38 +14,21 @@ function Hero() {
       className={classes.root}
       container
       direction='row'
-      justify='center'
       alignItems='center'
     >
       <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-        <Typography
-          className={classes.type}
-          variant='h2'
-          gutterBottom
-          align='center'
-        >
+        <Typography className={classes.type} variant='h2' gutterBottom>
           Find out "weather" <br /> you should go camping <br /> or stay cozy at
           home.
         </Typography>
-        <Typography
-          className={classes.subtitles}
-          variant='h6'
-          align='center'
-          gutterBottom
-        >
-          Find the local weather <br />
-          in any city of the USA.
+        <Typography className={classes.subtitles} variant='h6' gutterBottom>
+          Find the local weather in any city of the USA.
         </Typography>
 
         {/* Here is where the Search Component should go */}
         <Search />
 
-        <Typography
-          className={classes.subtitles}
-          variant='body2'
-          align='center'
-          gutterBottom
-        >
+        <Typography className={classes.subtitles} variant='body2' gutterBottom>
           Best way to know your city weather easily.
         </Typography>
       </Grid>
