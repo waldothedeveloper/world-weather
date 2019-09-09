@@ -1,25 +1,35 @@
 import React from "react";
 import { useStyles } from "../css/singlecitycardCSS";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
+// import CardActions from "@material-ui/core/CardActions";
+// import Grid from "@material-ui/core/Grid";
 import CardContent from "@material-ui/core/CardContent";
 // import Button from "@material-ui/core/Button";
 // import Clock from "../ExampleCities/Clock";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
-import Temperature from "./Temperature";
+// import Temperature from "./Temperature";
 
-export default function SimpleCard(props) {
+export default function SingleCityCard({
+  data,
+  gMapsError,
+  gMapsLoading,
+  isError,
+  isLoading,
+  wikiData,
+  wikiIsError,
+  wikiIsLoading,
+  unsplashIsLoading,
+  unsplashIsError,
+  unsplashData
+}) {
   const classes = useStyles();
-  const dataReceived = props.data;
-  const isLoading = props.isLoading;
-  const isError = props.isError;
+  console.log("wikiData", wikiData);
+  // console.log("unsplashData:", unsplashData);
 
   return (
     <>
-      {dataReceived.length === 0 ? (
-        <div>Loading...</div>
-      ) : isError ? (
+      {wikiIsError && isError && gMapsError && unsplashIsError ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
             <Typography align='center' variant='h4'>
@@ -27,7 +37,7 @@ export default function SimpleCard(props) {
             </Typography>
           </CardContent>
         </Card>
-      ) : isLoading ? (
+      ) : wikiIsLoading && isLoading && gMapsLoading && unsplashIsLoading ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
             <div style={{ display: "flex", height: "auto" }}>
@@ -37,36 +47,33 @@ export default function SimpleCard(props) {
         </Card>
       ) : (
         <Card raised={true} className={classes.card}>
-          <CardContent className={classes.cardContent}>
-            <Typography className={classes.cityName} variant='h3' noWrap={true}>
-              <img
-                className={classes.media}
-                src={
-                  isLoading
-                    ? "http://placehold.jp/50x50.png"
-                    : `http://openweathermap.org/img/w/${
-                        dataReceived.data.weather[0].icon
-                      }.png`
-                }
-                alt='cities'
-              />
-              {dataReceived.data.name}
+          <CardContent className={classes.cardImgContainer}>
+            <img
+              src={
+                unsplashData[Math.floor(Math.random() * unsplashData.length)]
+                  .urls.raw + "&w=995&crop=facearea&fit=fillmax"
+              }
+              alt={data.data.name}
+            />
+          </CardContent>
+          <CardContent>
+            <Typography variant='h4' align='center' noWrap={true}>
+              {data.data.name}
             </Typography>
-            <Temperature temperature={parseInt(dataReceived.data.main.temp)} />
-            <Typography variant='h6' className={classes.colors}>
-              {dataReceived.data.weather[0].description}
+            <Typography
+              variant='body2'
+              align='center'
+              noWrap={true}
+              className={classes.cityName}
+            >
+              {wikiData.description}
             </Typography>
           </CardContent>
-          <CardContent className={classes.cardContent}>
-            {/* <Clock data={dataReceived.data} /> */}
-            <Typography variant='h6' className={classes.colors}>
-              Humidity: {dataReceived.data.main.humidity}
-            </Typography>
-            <Typography variant='h6' className={classes.colors}>
-              Wind Speed: {dataReceived.data.wind.speed}
+          <CardContent className={classes.textex}>
+            <Typography variant='body1' align='center'>
+              {wikiData.extract}
             </Typography>
           </CardContent>
-          <CardActions className={classes.actions} />
         </Card>
       )}
     </>

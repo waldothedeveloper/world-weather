@@ -42,6 +42,8 @@ const reducer = (state, action) => {
       width: widthIt,
       maxWidth: widthIt,
       margin: "auto"
+      // height: 350
+      // overflow: "scroll"
     };
   }
 
@@ -50,7 +52,9 @@ const reducer = (state, action) => {
     return {
       ...state,
       width: widthIt,
-      maxWidth: widthIt
+      maxWidth: widthIt,
+      height: 350,
+      overflow: "auto"
     };
   }
 };
@@ -61,7 +65,7 @@ export const Autocomplete = ({ currentRefinement, hits, setQueryHits }) => {
   const classes = useStyles();
 
   const [searchWidth, setSearchWidth] = React.useReducer(reducer, initialState);
-  console.log("searchWidth", searchWidth);
+  // console.log("searchWidth", searchWidth);
 
   React.useEffect(() => {
     setSearchWidth();
@@ -103,7 +107,7 @@ export const Autocomplete = ({ currentRefinement, hits, setQueryHits }) => {
             }}
             key={hit.objectID}
           >
-            {hit.name}
+            {hit.city}, {hit.state}
           </ListItem>
         ))}
       </List>

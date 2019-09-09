@@ -6,33 +6,37 @@ export default function ApiRequest() {
 
   //Setting up some state
   const [data, setData] = useState(null);
+  // console.log("data on API-REQUEST: ", data);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  // console.log("isLoading in API REQUEST: ", isLoading);
 
   //Cities in this request:
-  // New York(5128638)  coords: 40.714645, -74.041440
-  // San Francisco(5391959)  coords:
-  // Los Angeles(5368361)  coords:
-  // Miami(4164138)  coords:
-  // Chicago(4887398)  coords:
-  // Seattle(5809844)  coords:
-  // Boston(4183849)  coords:
-  // Philadelphia(4560349)  coords:
-  // Denver(5419384)  coords:
+  // New York(5128638)
+  // San Francisco(5391959)
+  // Los Angeles(5368361)
+  // Miami(4164138)
+  // Chicago(4887398)
+  // Seattle(5809844)
+  // Boston(4183849)
+  // Philadelphia(4560349)
+  // Denver(5419384)
 
   const [url, setUrl] = useState(
-    `http://api.openweathermap.org/data/2.5/group?id=5128638,5391959,5368361,4164138,4887398,5809844,4183849,4560349,5419384&units=metric&APPID=${
-      process.env.REACT_APP_OPENWEATHERMAP_API_KEY
-    }`
+    `http://api.openweathermap.org/data/2.5/group?id=5128638,5391959,5368361,4164138,4887398,5809844,4183849,4560349,5419384&units=metric&APPID=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`
   );
+
+  // console.log("url on API-REQUEST:", url);
+
   useEffect(() => {
+    // console.error("API request updated or unmounted");
     const abortController = new AbortController();
-    const signal = abortController.signal;
 
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const result = await axios(url, { signal: signal });
+        const result = await axios(url);
+        // console.log("FETCHING ON API REQUEST");
         setData(result);
       } catch (error) {
         setIsError(true);
@@ -43,7 +47,7 @@ export default function ApiRequest() {
 
     fetchData();
 
-    return function cleanup() {
+    return () => {
       abortController.abort();
     };
   }, [url]);

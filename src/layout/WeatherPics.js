@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import PexelApiRequest from "../Utils/Pexels_API_Request";
+import Unsplash_PexelApi_Request from "../Utils/Pexels_API_Request";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "../css/weatherpicsCSS";
 import { shuffle } from "../Utils/Randomizer";
@@ -9,14 +9,15 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 function WeatherPics() {
   const classes = useStyles();
 
-  const [{ data, isError, isLoading }, setUrl] = PexelApiRequest();
-  const images = data;
+  const [
+    { unsplashData, unsplashIsError, unsplashIsLoading },
+    setUrl
+  ] = Unsplash_PexelApi_Request();
+  const images = unsplashData;
 
   React.useEffect(() => {
     setUrl(
-      `https://api.unsplash.com/search/photos?client_id=${
-        process.env.REACT_APP_UNSPLASH_API_KEY
-      }&page=1&query=bad+weather`
+      `https://api.unsplash.com/search/photos?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&page=1&query=bad+weather`
     );
     //eslint-disable-next-line
   }, []);
@@ -27,7 +28,7 @@ function WeatherPics() {
   }
   return (
     <>
-      {isLoading ? (
+      {unsplashIsLoading ? (
         <Grid container direction='row' justify='center' alignItems='center'>
           <Grid item xm={12} sm={12} md={12} lg={12} xl={12}>
             <div style={{ display: "flex", height: "auto" }}>
@@ -35,7 +36,7 @@ function WeatherPics() {
             </div>
           </Grid>
         </Grid>
-      ) : isError ? (
+      ) : unsplashIsError ? (
         <Grid container direction='row' justify='center' alignItems='center'>
           <Grid item xm={12} sm={12} md={12} lg={12} xl={12}>
             <Typography variant='h4' gutterBottom align='center'>
