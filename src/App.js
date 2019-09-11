@@ -1,10 +1,8 @@
 import React from "react";
 import Navigation from "./AppBar/Navigation";
-import Hero from "./layout/Hero";
 import CssBaseline from "@material-ui/core/CssBaseline";
 // import WeatherInfo from "./layout/WeatherInfo";
 // import WeatherPics from "./layout/WeatherPics";
-import WeatherCard from "./layout/WeatherCard";
 // import WeatherWarning from "./layout/WeatherWarning";
 // import GalleryPreview from "./components/GalleryPreview";
 // import BottomNav from "./components/BottomNav";
@@ -22,13 +20,19 @@ import SectionA from "./layout/SectionA";
 //   loremInpsun
 // } from "./Utils/weatherText";
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import SingleCityCard from "./layout/SingleCityCard";
+
 function App() {
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Navigation />
-      <SectionA hero={<Hero />} weatherCard={<WeatherCard />} />
-      {/* <SectionB
+    <Router>
+      <React.Fragment>
+        <CssBaseline />
+        <Route exact path='/' component={SectionA} />
+        <Route path='/' component={Navigation} />
+        <Route path='/weather-card' component={SingleCityCard} />
+
+        {/* <SectionB
         partA={
           <WeatherInfo
             weatherInfo1={weatherInfo1}
@@ -47,7 +51,8 @@ function App() {
         partD={<WeatherWarning />}
       />
       <SectionE bottomNav={<BottomNav />} lastBottomNav={<LastBottomNav />} /> */}
-    </React.Fragment>
+      </React.Fragment>
+    </Router>
   );
 }
 

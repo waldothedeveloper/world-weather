@@ -1,9 +1,12 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import Hero from "./Hero";
+import WeatherCard from "./WeatherCard";
 
 const useStyles = makeStyles(theme => ({
   bg: {
+    //!TODO: need to follow this for every style
     // iphone 8plus & iphone xr
     [theme.breakpoints.down("sm")]: {
       height: "155vh"
@@ -59,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function SectionA({ hero, weatherCard }) {
+function SectionA() {
   const classes = useStyles();
   const [iphoneXR, setIphoneXR] = React.useState(false);
 
@@ -72,7 +75,7 @@ function SectionA({ hero, weatherCard }) {
   if (iphoneXR) {
     return (
       <>
-        <div className={classes.iphoneXrBackground}>{hero}</div>
+        <div className={classes.iphoneXrBackground}>{<Hero />}</div>
         <Grid
           className={classes.iphoneXrWeatherCard}
           container
@@ -80,14 +83,14 @@ function SectionA({ hero, weatherCard }) {
           justify='center'
           alignItems='center'
         >
-          {weatherCard}
+          {<WeatherCard />}
         </Grid>
       </>
     );
   } else {
     return (
       <>
-        <div className={classes.bg}>{hero}</div>
+        <div className={classes.bg}>{<Hero />}</div>
         <Grid
           className={classes.weathercard}
           container
@@ -95,7 +98,7 @@ function SectionA({ hero, weatherCard }) {
           justify='center'
           alignItems='center'
         >
-          {weatherCard}
+          {<WeatherCard />}
         </Grid>
       </>
     );

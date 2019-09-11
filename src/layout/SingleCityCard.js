@@ -9,27 +9,49 @@ import CardContent from "@material-ui/core/CardContent";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 // import Temperature from "./Temperature";
+import GoogleMapsAPI from "../Utils/GoogleMapsAPI";
+import WeatherApiRequest from "../Utils/WeatherApiRequest";
+import WikipediaApiRequest from "../Utils/WikipediaApiRequest";
+import Unsplash_PexelApi_Request from "../Utils/Unsplash_PexelApi_Request";
 
-export default function SingleCityCard({
-  data,
-  gMapsError,
-  gMapsLoading,
-  isError,
-  isLoading,
-  wikiData,
-  wikiIsError,
-  wikiIsLoading,
-  unsplashIsLoading,
-  unsplashIsError,
-  unsplashData
-}) {
+export default function SingleCityCard(props) {
   const classes = useStyles();
-  console.log("wikiData", wikiData);
-  // console.log("unsplashData:", unsplashData);
+  const [cityInfo, setCityInfo] = React.useState(null);
+  const [{ cityG, gMapsLoading, gMapsError }] = GoogleMapsAPI(cityInfo);
+  const [
+    { weatherData, weatherIsError, weatherIsLoading },
+    setWeatherUrl
+  ] = WeatherApiRequest(cityG);
+
+  const [{ wikiArticle, wikiIsError, wikiIsLoading }] = WikipediaApiRequest(
+    cityInfo
+  );
+
+  const [
+    { unsplashPhotos, unsplashIsError, unsplashIsLoading }
+  ] = Unsplash_PexelApi_Request(cityInfo);
+
+  //setting up the city name and state to local state
+  React.useEffect(() => {
+    const data = props.location.state.data;
+    setCityInfo(data);
+  }, [props.location.state]);
+
+  // giving to openWeather API the latitude and longitude to get the weather info
+  React.useEffect(() => {
+    if (cityG !== null) {
+      setWeatherUrl(
+        `http://api.openweathermap.org/data/2.5/weather?lat=${cityG.lat}&lon=${cityG.lng}&units=metric&APPID=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`
+      );
+    }
+    //eslint-disable-next-line
+  }, [cityG]);
 
   return (
     <>
-      {wikiIsError && isError && gMapsError && unsplashIsError ? (
+      {/* <div style={{ marginTop: "32rem" }}>TESTING</div> */}
+
+      {wikiIsError && weatherIsError && gMapsError && unsplashIsError ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
             <Typography align='center' variant='h4'>
@@ -37,7 +59,10 @@ export default function SingleCityCard({
             </Typography>
           </CardContent>
         </Card>
-      ) : wikiIsLoading && isLoading && gMapsLoading && unsplashIsLoading ? (
+      ) : wikiIsLoading &&
+        weatherIsLoading &&
+        gMapsLoading &&
+        unsplashIsLoading ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
             <div style={{ display: "flex", height: "auto" }}>
@@ -50,15 +75,18 @@ export default function SingleCityCard({
           <CardContent className={classes.cardImgContainer}>
             <img
               src={
-                unsplashData[Math.floor(Math.random() * unsplashData.length)]
-                  .urls.raw + "&w=995&crop=facearea&fit=fillmax"
+                unsplashPhotos === null
+                  ? null
+                  : unsplashPhotos[
+                      Math.floor(Math.random() * unsplashPhotos.length)
+                    ].urls.raw + "&w=995&crop=facearea&fit=fillmax"
               }
-              alt={data.data.name}
+              alt={wikiArticle === null ? "" : wikiArticle.name}
             />
           </CardContent>
           <CardContent>
             <Typography variant='h4' align='center' noWrap={true}>
-              {data.data.name}
+              {wikiArticle === null ? null : wikiArticle.name}
             </Typography>
             <Typography
               variant='body2'
@@ -66,12 +94,12 @@ export default function SingleCityCard({
               noWrap={true}
               className={classes.cityName}
             >
-              {wikiData.description}
+              {wikiArticle === null ? null : wikiArticle.description}
             </Typography>
           </CardContent>
           <CardContent className={classes.textex}>
             <Typography variant='body1' align='center'>
-              {wikiData.extract}
+              {wikiArticle === null ? null : wikiArticle.extract}
             </Typography>
           </CardContent>
         </Card>

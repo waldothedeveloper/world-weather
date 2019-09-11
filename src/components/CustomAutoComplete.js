@@ -6,11 +6,13 @@ import { MaterialUISearchBox } from "./MaterialUISearchBox";
 const ConnectedSearchBox = connectSearchBox(MaterialUISearchBox);
 
 const CustomAutocomplete = props => {
-  // console.log("props in auto-complete: ", props);
+  const [searchingWidth, setSearchingWidth] = React.useState(0);
+  // console.log("searchingWidth: ", searchingWidth);
+
   return (
     <>
-      <ConnectedSearchBox {...props} />
-      <Autocomplete {...props} />
+      <ConnectedSearchBox setSearchingWidth={setSearchingWidth} {...props} />
+      <Autocomplete searchingWidth={searchingWidth} {...props} />
     </>
   );
 };

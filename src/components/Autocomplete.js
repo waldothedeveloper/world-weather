@@ -3,6 +3,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 // import { useStyles } from "../css/searchCSS";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 const symRegex = /[`~!@#$%^&*(),.?;"':{}|/<>[\\\]]/;
 
@@ -30,46 +31,50 @@ const initialState = {
   borderRadius: "0 0 24px 24px"
 };
 
-const reducer = (state, action) => {
-  const widthIt = document.getElementsByClassName(
-    "MuiPaper-root MuiPaper-elevation1 makeStyles-root-192 MuiPaper-rounded"
-  )[0].offsetWidth;
-
-  if (widthIt !== 500) {
-    // console.log("widthIt not equal to 500");
-    return {
-      ...state,
-      width: widthIt,
-      maxWidth: widthIt,
-      margin: "auto"
-      // height: 350
-      // overflow: "scroll"
-    };
-  }
-
-  if (widthIt === 500) {
-    // console.log("widthIt = 500");
-    return {
-      ...state,
-      width: widthIt,
-      maxWidth: widthIt,
-      height: 350,
-      overflow: "auto"
-    };
-  }
-};
-
 // Single index search return from Algolia
 // Some rendering logic is being handled here
-export const Autocomplete = ({ currentRefinement, hits, setQueryHits }) => {
+export const Autocomplete = ({
+  currentRefinement,
+  hits,
+  searchingWidth,
+  allDataFromAllApis
+}) => {
   const classes = useStyles();
+
+  // console.log("allDataFromAllApis:", allDataFromAllApis);
+
+  const reducer = (state, action) => {
+    //! TODO: need to find implementation for mobile with the length of the cities
+    if (searchingWidth !== 500) {
+      // console.log("widthIt not equal to 500");
+      return {
+        ...state,
+        width: searchingWidth,
+        maxWidth: searchingWidth,
+        margin: "auto"
+        //check what solution to implement on mobile, this below does not work
+        // height: 350
+        // overflow: "scroll"
+      };
+    }
+
+    if (searchingWidth === 500) {
+      // console.log("widthIt = 500");
+      return {
+        ...state,
+        width: searchingWidth,
+        maxWidth: searchingWidth,
+        height: 350,
+        overflow: "auto"
+      };
+    }
+  };
 
   const [searchWidth, setSearchWidth] = React.useReducer(reducer, initialState);
   // console.log("searchWidth", searchWidth);
 
   React.useEffect(() => {
     setSearchWidth();
-    //eslint-disable-next-line
   }, []);
 
   //identify special chars from the user's input
@@ -99,15 +104,15 @@ export const Autocomplete = ({ currentRefinement, hits, setQueryHits }) => {
     return (
       <List style={searchWidth}>
         {hits.map(hit => (
-          <ListItem
-            button
-            onClick={e => {
-              setQueryHits(hit);
-              e.preventDefault();
-            }}
-            key={hit.objectID}
-          >
-            {hit.city}, {hit.state}
+          <ListItem button key={hit.objectID}>
+            <Link
+              to={{
+                pathname: "/weather-card",
+                state: { data: [hit.city, hit.state] }
+              }}
+            >
+              {hit.city}, {hit.state}
+            </Link>
           </ListItem>
         ))}
       </List>

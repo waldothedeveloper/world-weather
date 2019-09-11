@@ -12,10 +12,12 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 // import Clock from "./Clock";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Temperature from "./Temperature";
-import ApiRequest from "../Utils/ApiResquest";
+import WeatherApiRequest from "../Utils/WeatherApiRequest";
 
 function WeatherCard() {
-  const [{ data, isError, isLoading }] = ApiRequest();
+  const [
+    { weatherData, weatherIsError, weatherIsLoading }
+  ] = WeatherApiRequest();
   // console.log("isError: ", isError);
   const classes = useStyles();
   const theme = useTheme();
@@ -23,7 +25,7 @@ function WeatherCard() {
   // console.log("activeStep: ", activeStep);
   const [test, setTest] = useState(false);
 
-  const dataReceived = data;
+  const dataReceived = weatherData;
 
   // Functions to show next and previous weather card
   function handleNext() {
@@ -38,7 +40,7 @@ function WeatherCard() {
 
   return (
     <>
-      {isError ? (
+      {weatherIsError ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
             <Typography align='center' variant='h5'>
@@ -46,7 +48,7 @@ function WeatherCard() {
             </Typography>
           </CardContent>
         </Card>
-      ) : isLoading ? (
+      ) : weatherIsLoading ? (
         <Card raised={true} className={classes.card}>
           <CardContent>
             <div style={{ display: "flex", height: "auto" }}>

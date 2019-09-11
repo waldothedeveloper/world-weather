@@ -10,10 +10,21 @@ import { PopoverCustomHook } from "./PopoverCustomHook";
 export const MaterialUISearchBox = ({
   currentRefinement,
   refine,
+  setSearchingWidth,
   ...props
 }) => {
   const classes = useStyles();
   const [{ anchorEl }, handleClick] = PopoverCustomHook();
+  const refOffSetWidth = React.useRef(null);
+
+  React.useEffect(() => {
+    const width = refOffSetWidth.current
+      ? refOffSetWidth.current.offsetWidth
+      : 0;
+    // console.log("width: ", width);
+    setSearchingWidth(width);
+    //eslint-disable-next-line
+  }, [refOffSetWidth.current]);
 
   return (
     <form
@@ -29,7 +40,7 @@ export const MaterialUISearchBox = ({
         handleClick={handleClick}
         rest={props}
       />
-      <Paper className={classes.root}>
+      <Paper ref={refOffSetWidth} className={classes.root}>
         <InputBase
           onChange={e => refine(e.target.value)}
           value={currentRefinement}
