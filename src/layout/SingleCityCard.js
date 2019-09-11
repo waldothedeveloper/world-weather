@@ -16,6 +16,7 @@ import Unsplash_PexelApi_Request from "../Utils/Unsplash_PexelApi_Request";
 
 export default function SingleCityCard(props) {
   const classes = useStyles();
+  const [randNumber, setRandNumber] = React.useState(0);
   const [cityInfo, setCityInfo] = React.useState(null);
   const [{ cityG, gMapsLoading, gMapsError }] = GoogleMapsAPI(cityInfo);
   const [
@@ -30,6 +31,18 @@ export default function SingleCityCard(props) {
   const [
     { unsplashPhotos, unsplashIsError, unsplashIsLoading }
   ] = Unsplash_PexelApi_Request(cityInfo);
+
+  //getting a random number to pick a random photo
+  React.useEffect(() => {
+    const random = () => {
+      const picked = Math.floor(Math.random() * unsplashPhotos.length);
+      setRandNumber(picked);
+    };
+
+    if (unsplashPhotos !== null) {
+      random();
+    }
+  }, [unsplashPhotos]);
 
   //setting up the city name and state to local state
   React.useEffect(() => {
@@ -77,9 +90,8 @@ export default function SingleCityCard(props) {
               src={
                 unsplashPhotos === null
                   ? null
-                  : unsplashPhotos[
-                      Math.floor(Math.random() * unsplashPhotos.length)
-                    ].urls.raw + "&w=995&crop=facearea&fit=fillmax"
+                  : unsplashPhotos[randNumber].urls.raw +
+                    "&w=995&crop=facearea&fit=fillmax"
               }
               alt={wikiArticle === null ? "" : wikiArticle.name}
             />

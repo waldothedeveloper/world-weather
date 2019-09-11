@@ -106,6 +106,17 @@ export const Autocomplete = ({
         {hits.map(hit => (
           <ListItem button key={hit.objectID}>
             <Link
+              style={{
+                textDecoration: "none",
+                color: "#3C3D5A",
+                fontSize: "1rem",
+                fontWeight: 400,
+                lineHeight: 1.5,
+                letterSpacing: "0.00938em",
+                "&visited": {
+                  color: "#3C3D5A"
+                }
+              }}
               to={{
                 pathname: "/weather-card",
                 state: { data: [hit.city, hit.state] }
