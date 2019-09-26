@@ -22,14 +22,13 @@ export default function BottomNav() {
         md={6}
         lg={6}
         xl={6}
-        style={{ paddingLeft: "12rem" }}
       >
         <Typography variant='h4' gutterBottom align='left'>
           Weatherkast.
         </Typography>
         <Typography variant='body1' gutterBottom align='left'>
-          There are many variations of passages of Lorem <br /> Ipsum but the
-          majority have suffered. There are <br /> many variations of passages.
+          There are many variations of passages of Lorem Ipsum but the majority
+          have suffered. There are many variations of passages.
         </Typography>
       </Grid>
       <Grid
@@ -46,6 +45,7 @@ export default function BottomNav() {
         </Typography>
         <div className={classes.links}>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {
@@ -55,6 +55,7 @@ export default function BottomNav() {
             Tropical &amp; hurricane
           </Link>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {
@@ -64,6 +65,7 @@ export default function BottomNav() {
             Storm reports
           </Link>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {
@@ -73,6 +75,7 @@ export default function BottomNav() {
             Severe alerts
           </Link>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {
@@ -97,6 +100,7 @@ export default function BottomNav() {
         </Typography>
         <div className={classes.links}>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {
@@ -106,6 +110,7 @@ export default function BottomNav() {
             My favorites
           </Link>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {
@@ -115,6 +120,7 @@ export default function BottomNav() {
             History data
           </Link>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {
@@ -139,6 +145,7 @@ export default function BottomNav() {
         </Typography>
         <div className={classes.links}>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {
@@ -148,6 +155,7 @@ export default function BottomNav() {
             Photo galleries
           </Link>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {
@@ -157,6 +165,7 @@ export default function BottomNav() {
             World view
           </Link>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {
@@ -166,6 +175,7 @@ export default function BottomNav() {
             Web cams
           </Link>
           <Link
+            className={classes.button}
             component='button'
             variant='body2'
             onClick={() => {

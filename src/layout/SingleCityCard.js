@@ -1,18 +1,18 @@
 import React from "react";
 import { useStyles } from "../css/singlecitycardCSS";
-import Card from "@material-ui/core/Card";
-// import CardActions from "@material-ui/core/CardActions";
-// import Grid from "@material-ui/core/Grid";
-import CardContent from "@material-ui/core/CardContent";
-// import Button from "@material-ui/core/Button";
-// import Clock from "../ExampleCities/Clock";
+import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
-// import Temperature from "./Temperature";
 import GoogleMapsAPI from "../Utils/GoogleMapsAPI";
 import WeatherApiRequest from "../Utils/WeatherApiRequest";
 import WikipediaApiRequest from "../Utils/WikipediaApiRequest";
 import Unsplash_PexelApi_Request from "../Utils/Unsplash_PexelApi_Request";
+import thermometer from "../icons/thermometer.svg";
+import sunrise from "../icons/sun.svg";
+import sunset from "../icons/sunset.svg";
+import suncloud from "../icons/sun-cloud.svg";
+import { DatesLocale } from "../Utils/DateWithLocaleString";
+// import Icon from "@material-ui/core/Icon";
 
 export default function SingleCityCard(props) {
   const classes = useStyles();
@@ -24,9 +24,12 @@ export default function SingleCityCard(props) {
     setWeatherUrl
   ] = WeatherApiRequest(cityG);
 
+  // console.log("weatherData", weatherData);
+
   const [{ wikiArticle, wikiIsError, wikiIsLoading }] = WikipediaApiRequest(
     cityInfo
   );
+  // console.log("wikiArticle", wikiArticle);
 
   const [
     { unsplashPhotos, unsplashIsError, unsplashIsLoading }
@@ -65,57 +68,214 @@ export default function SingleCityCard(props) {
       {/* <div style={{ marginTop: "32rem" }}>TESTING</div> */}
 
       {wikiIsError && weatherIsError && gMapsError && unsplashIsError ? (
-        <Card raised={true} className={classes.card}>
-          <CardContent>
+        <Grid container className={classes.container}>
+          <Grid item style={{ marginTop: 32 }}>
             <Typography align='center' variant='h4'>
               Oh no...we are having technical issues...try again later
             </Typography>
-          </CardContent>
-        </Card>
+          </Grid>
+        </Grid>
       ) : wikiIsLoading &&
         weatherIsLoading &&
         gMapsLoading &&
         unsplashIsLoading ? (
-        <Card raised={true} className={classes.card}>
-          <CardContent>
+        <Grid container className={classes.container}>
+          <Grid item>
             <div style={{ display: "flex", height: "auto" }}>
               <CircularProgress style={{ margin: "auto" }} />
             </div>
-          </CardContent>
-        </Card>
+          </Grid>
+        </Grid>
       ) : (
-        <Card raised={true} className={classes.card}>
-          <CardContent className={classes.cardImgContainer}>
-            <img
-              src={
-                unsplashPhotos === null
-                  ? null
-                  : unsplashPhotos[randNumber].urls.raw +
-                    "&w=995&crop=facearea&fit=fillmax"
-              }
-              alt={wikiArticle === null ? "" : wikiArticle.name}
-            />
-          </CardContent>
-          <CardContent>
-            <Typography variant='h4' align='center' noWrap={true}>
-              {wikiArticle === null ? null : wikiArticle.name}
-            </Typography>
-            <Typography
-              variant='body2'
-              align='center'
-              noWrap={true}
-              className={classes.cityName}
-            >
-              {wikiArticle === null ? null : wikiArticle.description}
-            </Typography>
-          </CardContent>
-          <CardContent className={classes.textex}>
-            <Typography variant='body1' align='center'>
-              {wikiArticle === null ? null : wikiArticle.extract}
-            </Typography>
-          </CardContent>
-        </Card>
+        <Grid container>
+          <Grid
+            style={{ marginTop: "3rem" }}
+            item
+            xs={12}
+            sm={12}
+            md={12}
+            lg={4}
+            xl={4}
+          >
+            {/* Wikipedia INFO */}
+            <div className={classes.wikiWrapper}>
+              <Typography align='left' variant='h4'>
+                {wikiArticle === null ? null : wikiArticle.displaytitle}
+              </Typography>
+              <Typography
+                className={classes.subtext}
+                align='left'
+                variant='body2'
+              >
+                {wikiArticle === null ? null : wikiArticle.description}
+              </Typography>
+              <Typography align='left' variant='body1'>
+                {wikiArticle === null ? null : wikiArticle.extract}
+              </Typography>
+            </div>
+            {/* Weather INFO */}
+            <Grid container className={classes.iconsContainer}>
+              {/* //temperature */}
+              <Grid
+                className={classes.iconWrapper}
+                item
+                xs={6}
+                sm={6}
+                md={3}
+                lg={3}
+                xl={3}
+              >
+                <img
+                  className={classes.icons}
+                  src={thermometer}
+                  alt='temperature'
+                />
+                <Typography
+                  align='center'
+                  variant='h6'
+                  className={classes.iconsText}
+                >
+                  {weatherData === null || weatherData.main === undefined
+                    ? null
+                    : Number.parseInt(weatherData.main.temp)}
+                </Typography>
+              </Grid>
+
+              {/* //weather conditions */}
+              <Grid
+                className={classes.iconWrapper}
+                item
+                xs={6}
+                sm={6}
+                md={3}
+                lg={3}
+                xl={3}
+              >
+                <img
+                  className={classes.icons}
+                  src={suncloud}
+                  alt='weather description'
+                />
+                <Typography
+                  align='center'
+                  variant='h6'
+                  className={classes.iconsText}
+                >
+                  {weatherData === null || weatherData.main === undefined
+                    ? null
+                    : weatherData.weather[0].main}
+                </Typography>
+              </Grid>
+
+              {/* // sunrise */}
+              <Grid
+                className={classes.iconWrapper}
+                item
+                xs={6}
+                sm={6}
+                md={3}
+                lg={3}
+                xl={3}
+              >
+                <img className={classes.icons} src={sunrise} alt='sunrise' />
+                <Typography
+                  align='center'
+                  variant='h6'
+                  className={classes.iconsText}
+                >
+                  {weatherData === null || weatherData.main === undefined
+                    ? null
+                    : DatesLocale(weatherData.sys.sunrise)}
+                </Typography>
+              </Grid>
+
+              {/* //sunset */}
+              <Grid
+                className={classes.iconWrapper}
+                item
+                xs={6}
+                sm={6}
+                md={3}
+                lg={3}
+                xl={3}
+              >
+                <img className={classes.icons} src={sunset} alt='temperature' />
+                <Typography
+                  align='center'
+                  variant='h6'
+                  className={classes.iconsText}
+                >
+                  {weatherData === null || weatherData.main === undefined
+                    ? null
+                    : DatesLocale(weatherData.sys.sunset)}
+                </Typography>
+              </Grid>
+            </Grid>
+            <div></div>
+          </Grid>
+          <Grid
+            style={{ marginTop: "3rem" }}
+            item
+            xs={12}
+            sm={12}
+            md={12}
+            lg={8}
+            xl={8}
+          >
+            {/* IMAGES */}
+            <figure className={classes.fig}>
+              <img
+                className={classes.imago}
+                src={
+                  unsplashPhotos === null
+                    ? null
+                    : unsplashPhotos[randNumber].urls.regular
+                }
+                alt={wikiArticle === null ? "" : wikiArticle.displaytitle}
+              />
+            </figure>
+          </Grid>
+        </Grid>
       )}
     </>
   );
 }
+
+// `&auto=format&h=350&w=${document.body.offsetWidth}&crop=edges&fit=crop`
+
+// <Grid container className={classes.container}>
+//   <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+//     <Typography className={classes.cityTitle} variant='h2' align='left'>
+//       {wikiArticle === null ? null : wikiArticle.displaytitle}
+//     </Typography>
+//     <Typography
+//       className={classes.cityTitle}
+//       variant='body1'
+//       align='left'
+//     >
+//       {wikiArticle === null ? null : wikiArticle.extract}
+//     </Typography>
+//   </Grid>
+/* <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+            <figure style={{ margin: 0, padding: 0, background: "#333" }}>
+              <img
+                className={classes.imgago}
+                src={
+                  unsplashPhotos === null
+                    ? null
+                    : unsplashPhotos[randNumber].urls.raw +
+                      `&w=${document.body.offsetWidth}&crop=facearea&fit=crop`
+                }
+                alt={wikiArticle === null ? "" : wikiArticle.displaytitle}
+              />
+            </figure>
+            <Typography
+              className={classes.cityTitle}
+              variant='h4'
+              align='center'
+              noWrap={true}
+            >
+              {wikiArticle === null ? null : wikiArticle.displaytitle}
+            </Typography>
+          </Grid> */
+// </Grid>

@@ -1,23 +1,41 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
+import GalleryPreview from "../components/GalleryPreview";
+import WeatherInfo from "../layout/WeatherInfo";
+import WeatherWarning from "../layout/WeatherWarning";
+import { weatherInfo3, loremInpsun } from "../Utils/weatherText";
+import { makeStyles } from "@material-ui/core/styles";
 
-function SectionD(props) {
+const useStyles = makeStyles(theme => ({
+  sectionDcontainer: {
+    [theme.breakpoints.down("sm")]: {
+      padding: 0
+    },
+    [theme.breakpoints.up("md")]: {
+      padding: "2rem 14rem"
+    }
+  }
+}));
+
+function SectionD() {
+  const classes = useStyles();
   return (
     <>
-      <>{props.galleryPreview}</>
+      <>
+        <GalleryPreview />
+      </>
       <Grid
         container
         direction='row-reverse'
         justify='center'
         alignItems='center'
-        //need to fix this line of code below later
-        style={{ padding: "2rem 14rem" }}
+        className={classes.sectionDcontainer}
       >
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-          {props.partC}
+          <WeatherInfo weatherInfo1={weatherInfo3} loremInpsun={loremInpsun} />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-          {props.partD}
+          <WeatherWarning />
         </Grid>
       </Grid>
     </>

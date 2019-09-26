@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
       height: "160vh"
     },
     padding: "5rem 0 0 0",
-    background: "#b5cbe1",
+    // background: "#b5cbe1",
+    background: "#a3dcf5",
     clipPath: "polygon(0 0, 100% 0, 100% 90%, 0% 100%)",
     WebkitClipPath: "polygon(0 0, 100% 0, 100% 90%, 0% 100%)"
   },
@@ -52,7 +53,8 @@ const useStyles = makeStyles(theme => ({
   iphoneXrBackground: {
     height: "130vh",
     padding: "5rem 0 0 0",
-    background: "#b5cbe1",
+    // background: "#b5cbe1",
+    background: "#a3dcf5",
     clipPath: "polygon(0 0, 100% 0, 100% 90%, 0% 100%)",
     WebkitClipPath: "polygon(0 0, 100% 0, 100% 90%, 0% 100%)"
   },

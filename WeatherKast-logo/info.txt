@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: LibreBaskerville-Regular
+font link: https://fonts.google.com/specimen/Libre+Baskerville
+font author: Impallari Type
+font author site: https://twitter.com/pabloimpallari
+Slogan Font: LibreBaskerville-Regular
+
+icon designer: Ralf Schmitzer
+icon designer link: /ralfschmitzer
+        
+{"bg-gradient-0":"#0978A6","bg-gradient-1":"#FB9447","icon":"#ffffff","font":"#ffffff","slogan":"#ffffff"}
+      

@@ -1,11 +1,12 @@
 import React from "react";
+import BottomNav from "../components/BottomNav";
+// import LastBottomNav from "./LastBottomNav";
 
-function SectionE(props) {
+function SectionE() {
   return (
     <>
-      <>{props.bottomNav}</>
-
-      <>{props.lastBottomNav}</>
+      <BottomNav />
+      {/* <LastBottomNav /> */}
     </>
   );
 }

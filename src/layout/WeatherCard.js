@@ -60,32 +60,30 @@ function WeatherCard() {
         <Card raised={true} className={classes.card}>
           <CardContent className={classes.cardContent}>
             <Typography className={classes.cityName} variant='h4'>
-              {dataReceived.data.list[activeStep].name}
+              {dataReceived.list[activeStep].name}
             </Typography>
             <Temperature
               test={test}
-              temperature={parseInt(
-                dataReceived.data.list[activeStep].main.temp
-              )}
+              temperature={parseInt(dataReceived.list[activeStep].main.temp)}
             />
             <Typography variant='body1' className={classes.colors}>
-              {dataReceived.data.list[activeStep].weather[0].description}
+              {dataReceived.list[activeStep].weather[0].description}
             </Typography>
           </CardContent>
           <CardContent className={classes.cardContent}>
             {/* <Clock activeStep={activeStep} data={dataReceived.data.list} /> */}
             <Typography variant='body2' className={classes.colors}>
               {" "}
-              Humidity: {dataReceived.data.list[activeStep].main.humidity}
+              Humidity: {dataReceived.list[activeStep].main.humidity}
             </Typography>
             <Typography variant='body2' className={classes.colors}>
-              Wind Speed: {dataReceived.data.list[activeStep].wind.speed}
+              Wind Speed: {dataReceived.list[activeStep].wind.speed}
             </Typography>
           </CardContent>
           <CardActions className={classes.actions}>
             <MobileStepper
               className={classes.root}
-              steps={0 || dataReceived.data.list.length}
+              steps={0 || dataReceived.list.length}
               position='static'
               variant='dots'
               activeStep={activeStep}
@@ -93,7 +91,7 @@ function WeatherCard() {
                 <Button
                   size='small'
                   onClick={handleNext}
-                  disabled={activeStep === dataReceived.data.list.length - 1}
+                  disabled={activeStep === dataReceived.list.length - 1}
                 >
                   Next
                   {theme.direction === "rtl" ? (

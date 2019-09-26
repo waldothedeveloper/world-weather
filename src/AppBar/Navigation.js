@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import CloseButton from "@material-ui/icons/Close";
+// import WeatherKastLogo from "../images/isolated-monochrome-black.svg";
 
 export default function Navigation() {
   const [switchButton, setSwitchButton] = React.useState(false);
@@ -44,6 +45,9 @@ export default function Navigation() {
         }
       >
         <ul className={classes.globalHeader}>
+          {/* <IconButton edge='start' aria-label='logo' color='inherit'>
+            <img src={WeatherKastLogo} alt='WeatherKast Logo' />
+          </IconButton> */}
           <Typography
             variant='h6'
             className={

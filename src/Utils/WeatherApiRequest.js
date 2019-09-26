@@ -32,7 +32,7 @@ export default function WeatherApiRequest(props) {
       try {
         const result = await axios(weatherUrl);
         // console.log("FETCHING ON API REQUEST");
-        setWeatherData(result);
+        setWeatherData(result.data);
       } catch (error) {
         setWeatherIsError(true);
         console.log(`There is a problem with the request ${error}`);

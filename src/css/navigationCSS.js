@@ -62,14 +62,18 @@ export const useStyles = makeStyles(theme => ({
     margin: 0,
     width: "100%",
     height: "48px",
-    background: "#b5cbe1",
+    // background: "#b5cbe1",
+    background: "#a3dcf5",
     fontSize: "17px",
     transitionDelay: "0.3s",
     overflowY: "hidden",
     webkitTransition:
       "background .44s .2s cubic-bezier(0.52, 0.16, 0.24, 1),height .56s cubic-bezier(0.52, 0.16, 0.24, 1)",
     transition:
-      "background .44s .2s cubic-bezier(0.52, 0.16, 0.24, 1),height .56s cubic-bezier(0.52, 0.16, 0.24, 1)"
+      "background .44s .2s cubic-bezier(0.52, 0.16, 0.24, 1),height .56s cubic-bezier(0.52, 0.16, 0.24, 1)",
+    [theme.breakpoints.up("lg")]: {
+      display: "none"
+    }
   },
   globalNavOpened: {
     overflow: "hidden",

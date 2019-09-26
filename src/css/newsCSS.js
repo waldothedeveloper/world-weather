@@ -9,9 +9,16 @@ export const useStyles = makeStyles(theme => ({
   },
 
   cont: {
-    padding: "3.5rem"
+    [theme.breakpoints.up("lg")]: {
+      padding: "3.5rem"
+    },
+    padding: 0
   },
-
+  contItem: {
+    [theme.breakpoints.down("sm")]: {
+      padding: "0.6rem"
+    }
+  },
   card: {
     display: "flex",
     flexDirection: "column"
@@ -19,7 +26,8 @@ export const useStyles = makeStyles(theme => ({
 
   maintitle: {
     color: "#FEFEFE",
-    fontWeight: 700
+    fontWeight: 700,
+    padding: "2rem 0 1rem 0"
   },
 
   link: {
@@ -34,7 +42,7 @@ export const useStyles = makeStyles(theme => ({
     alignItems: "center",
     display: "inline-flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     marginBottom: "1.2rem"
   },
 
@@ -49,7 +57,11 @@ export const useStyles = makeStyles(theme => ({
   },
 
   imgWrapper: {
-    paddingRight: "2.5em"
+    [theme.breakpoints.up("lg")]: {
+      paddingRight: "2.5em"
+    },
+    paddingRight: 0,
+    margin: 0
   },
 
   img: {
@@ -58,27 +70,22 @@ export const useStyles = makeStyles(theme => ({
   },
 
   title: {
+    textAlign: "center",
     color: "#fefefe"
   },
 
   subtitle: {
+    textAlign: "center",
     color: "#eaeaea"
   },
-
+  parag: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none"
+    },
+    color: "#eaeaea",
+    textAlign: "center"
+  },
   links: {
     color: "#2A5DB0"
   }
 }));
-
-// "@global": {
-//   "*::-webkit-scrollbar": {
-//     width: "0.4em"
-//   },
-//   "*::-webkit-scrollbar-track": {
-//     "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
-//   },
-//   "*::-webkit-scrollbar-thumb": {
-//     backgroundColor: "rgba(0,0,0,.1)",
-//     outline: "1px solid slategrey"
-//   }
-// }

@@ -2,32 +2,42 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import WeatherJokes from "../components/WeatherJokes";
+import News from "../components/News";
 
 const useStyles = makeStyles(theme => ({
+  // original blue gradient: "linear-gradient( 135deg, #000428 0.8%, #004e92 100%)"
+  // taken from css-tricks: linear-gradient(to right,#ff8a00,#da1b60)
+  // taken from Stripe? linear-gradient(rgb(28, 210, 242), rgb(68, 0, 204))
+  // backgroundImage: "linear-gradient( 135deg, #000428 0.8%, #004e92 100%)",
   root: {
-    // original blue gradient: "linear-gradient( 135deg, #000428 0.8%, #004e92 100%)"
-    // taken from css-tricks: linear-gradient(to right,#ff8a00,#da1b60)
-    // taken from Stripe? linear-gradient(rgb(28, 210, 242), rgb(68, 0, 204))
-    // backgroundImage: "linear-gradient( 135deg, #000428 0.8%, #004e92 100%)",
-    backgroundColor: "#013946",
-    padding: "100px 50px 280px 50px",
+    [theme.breakpoints.down("sm")]: {
+      height: "100vh"
+    },
+    [theme.breakpoints.up("lg")]: {
+      padding: "100px 50px 280px 50px"
+    },
+    backgroundImage: "linear-gradient( to right, #27CDE8 10%, #3CA4EC 100%)",
+    padding: 0,
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-around",
-    flexWrap: "nowrap",
-    flexDirection: "row"
-    // height: "30rem"
-    // clipPath: "inset(13px -50px -50px -50px round 150px)"
+    flexWrap: "wrap",
+    flexDirection: "column"
   },
   wrapper: {
-    margin: "-180px 0 180px 0"
+    [theme.breakpoints.down("sm")]: {
+      padding: "1rem"
+    }
+    // margin: "-180px 0 180px 0"
   },
   gitem: {
-    padding: "3.2rem"
+    [theme.breakpoints.up("lg")]: {
+      padding: "3.2rem"
+    },
+    padding: 0
   }
 }));
 
-function SectionC(props) {
+function SectionC() {
   const classes = useStyles();
   return (
     <>
@@ -47,7 +57,7 @@ function SectionC(props) {
           lg={12}
           xl={12}
         >
-          {props.news}
+          <News />
         </Grid>
       </Grid>
       <Grid

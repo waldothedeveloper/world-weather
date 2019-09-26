@@ -1,38 +1,170 @@
 import { makeStyles } from "@material-ui/core/styles";
+// import taieri from "../icons/Vorderrhein.svg";
 
 export const useStyles = makeStyles(theme => ({
-  card: {
-    [theme.breakpoints.down("sm")]: {
-      height: 450,
-      width: 350
-    },
-    [theme.breakpoints.up("lg")]: {
-      height: "100%",
-      width: 995
-    },
-    width: 700,
-    height: "100%",
-    boxShadow:
-      "0 7px 13px -3px rgba(45,35,66,0.3), 0 8px 10px 0 rgba(45,35,66,0.4), inset 0 -2px 0 0 rgba(0,0,0,0.12)"
+  wikiWrapper: {
+    padding: "1.6rem"
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
+
+  container: {
+    //iphone 8+ & iphone xr
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      flexDirection: "column",
+      margin: "48px auto",
+      marginTop: 48
+      // background: `transparent url(${taieri}) top right no-repeat`,
+      // backgroundSize: "30% 40%"
+    },
+    //ipad mini
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
+      flexDirection: "column",
+      margin: "48px auto",
+      marginTop: 48
+      // background: `transparent url(${taieri}) top right no-repeat`,
+      // backgroundSize: "30% 40%"
+    },
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+      flexDirection: "column",
+      margin: "48px auto",
+      marginTop: 48
+      // background: `transparent url(${taieri}) top right no-repeat`,
+      // backgroundSize: "30% 40%"
+    },
+    //laptop
+    [theme.breakpoints.up("lg")]: {
+      display: "flex",
+      flexDirection: "column",
+      margin: "48px auto",
+      marginTop: 48
+      // background: `transparent url(${taieri}) top right no-repeat`,
+      // backgroundSize: "30% 40%"
+    }
   },
   title: {
-    fontSize: 14
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "1.8rem",
+      padding: "1.6rem 1.6rem 0 1.6rem"
+    },
+    [theme.breakpoints.up("sm")]: {
+      marginTop: "1.8rem",
+      padding: "1.6rem 1.6rem 0 1.6rem"
+    },
+    [theme.breakpoints.up("md")]: {
+      marginTop: "2rem",
+      padding: "1.6rem 14rem 0 1.6rem"
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginTop: "1.6rem 14rem 0 1.6rem"
+    }
   },
-  pos: {
-    marginBottom: 12
+  middleText: {
+    [theme.breakpoints.down("sm")]: {
+      padding: "1.6rem 4rem 0 1.6rem"
+    },
+    [theme.breakpoints.up("sm")]: {
+      padding: "1.6rem 4rem 0 1.6rem"
+    },
+    [theme.breakpoints.up("md")]: {
+      padding: "1.6rem 24rem 0 1.6rem"
+    },
+    [theme.breakpoints.up("lg")]: {
+      padding: "1.6rem 34rem 0 1.6rem"
+    }
   },
-  cardImgContainer: {
-    height: 320,
-    padding: "0 !important",
-    clipPath: "polygon(0 0, 100% 0, 100% 86%, 0 70%)",
-    WebkitClipPath: "polygon(0 0, 100% 0, 100% 86%, 0 70%)"
+  subtext: {
+    [theme.breakpoints.down("sm")]: {
+      padding: "0.2rem 0 0.5rem 0 !important"
+    },
+    [theme.breakpoints.up("sm")]: {
+      // padding: "0rem 14rem 2rem 14rem !important"
+    },
+    [theme.breakpoints.up("md")]: {
+      // padding: "0rem 14rem 0.8rem 14rem !important"
+    },
+    [theme.breakpoints.up("lg")]: {
+      // padding: "0rem 14rem 0.8rem 14rem !important"
+    }
   },
-  textex: {
-    padding: "0 4rem 2rem 4rem !important"
+  iconsContainer: {
+    [theme.breakpoints.down("sm")]: {
+      margin: "0.2rem 0",
+      padding: "0.4rem 0.4rem 0.4rem 1.6rem"
+    },
+    [theme.breakpoints.up("sm")]: {
+      margin: "0.2rem 0",
+      padding: "0.6rem"
+    },
+    [theme.breakpoints.up("md")]: {
+      margin: "1.4rem 0",
+      padding: "1rem"
+    },
+    [theme.breakpoints.up("lg")]: {
+      margin: "2.6rem 0",
+      padding: "1.6rem"
+    },
+    display: "flex",
+    flexDirection: "row"
+  },
+  iconWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    margin: "1rem 0 0.4rem 0"
+  },
+  icons: {
+    [theme.breakpoints.down("sm")]: {
+      width: 32,
+      height: 32
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: 32,
+      height: 32
+    },
+    [theme.breakpoints.up("md")]: {
+      width: 48,
+      height: 48
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: 48,
+      height: 48
+    }
+  },
+  iconsText: {
+    paddingLeft: "0.65rem"
+  },
+  fig: {
+    [theme.breakpoints.down("sm")]: {
+      margin: 0,
+      padding: 0,
+      height: "auto"
+    },
+    [theme.breakpoints.up("sm")]: {
+      margin: 0,
+      padding: 0,
+      height: "auto"
+    },
+    [theme.breakpoints.up("md")]: {
+      margin: 0,
+      padding: 0,
+      height: 620,
+      overflow: "hidden"
+    },
+    [theme.breakpoints.up("lg")]: {
+      margin: 0,
+      padding: 0,
+      height: 720,
+      overflow: "hidden"
+    },
+    margin: 0,
+    padding: 0,
+    height: 520
+  },
+  imago: {
+    width: "100%",
+    height: "auto"
   }
 }));

@@ -2,7 +2,20 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(6)
+    [theme.breakpoints.down("sm")]: {
+      padding: "6rem 1.5rem 4rem 1.5rem"
+    },
+    //ipad mini
+    [theme.breakpoints.up("sm")]: {
+      padding: "6rem 1.5rem 4rem 1.5rem"
+    },
+    [theme.breakpoints.up("md")]: {
+      padding: "6rem 1.5rem 4rem 1.5rem"
+    },
+    //laptop
+    [theme.breakpoints.up("lg")]: {
+      padding: theme.spacing(6)
+    }
   },
   button: {
     width: "200px",

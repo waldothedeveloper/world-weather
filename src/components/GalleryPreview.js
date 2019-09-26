@@ -3,23 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles(theme => ({
-  image: {
-    maxWidth: "100%",
-    height: "auto"
-  },
-  root: {
-    padding: "0 120px 0 120px"
-  },
-  twelve2: {
-    paddingTop: "6rem"
-  },
-  root1: {
-    marginTop: "4rem"
-  }
-}));
+import { useStyles } from "../css/galleryPreviewCSS";
 
 //Pexels requires a special auth header
 const GalleryPreview = () => {
@@ -126,7 +110,6 @@ const GalleryPreview = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <figure>
               <img
-                loading='lazy'
                 width='100%'
                 height='auto'
                 className={classes.image}
@@ -150,9 +133,8 @@ const GalleryPreview = () => {
             justify='space-evenly'
           >
             <Grid item xs={12} sm={12} md={7} lg={7} xl={7}>
-              <figure style={{ margin: 0, padding: 0 }}>
+              <figure>
                 <img
-                  loading='lazy'
                   width='100%'
                   height='auto'
                   className={classes.image}
@@ -178,9 +160,8 @@ const GalleryPreview = () => {
               lg={4}
               xl={4}
             >
-              <figure style={{ margin: "0 -22rem 0 0", padding: 0 }}>
+              <figure className={classes.crazyPic}>
                 <img
-                  loading='lazy'
                   width='100%'
                   height='auto'
                   className={classes.image}

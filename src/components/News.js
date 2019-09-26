@@ -24,9 +24,6 @@ function News() {
         <Typography className={classes.maintitle} variant='h4'>
           Weather News
         </Typography>
-        <Link href={dudUrl} className={classes.link}>
-          See more...
-        </Link>
       </div>
       <Divider className={classes.divide} variant='fullWidth' />
       {isError ? (
@@ -71,7 +68,15 @@ function News() {
                       />
                     </figure>
                   </Grid>
-                  <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+                  <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    lg={4}
+                    xl={4}
+                    className={classes.contItem}
+                  >
                     <Typography
                       className={classes.title}
                       variant='h4'
@@ -89,7 +94,7 @@ function News() {
                     </Typography>
                     <Typography
                       style={{ marginTop: "2em" }}
-                      className={classes.subtitle}
+                      className={classes.parag}
                       variant='body1'
                       component='p'
                       gutterBottom

@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Unsplash_PexelApi_Request from "../Utils/Pexels_API_Request";
+import Unsplash_Custom_Hook from "../Utils/Unsplash_Custom_Hook";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "../css/weatherpicsCSS";
 import { shuffle } from "../Utils/Randomizer";
@@ -10,21 +10,23 @@ function WeatherPics() {
   const classes = useStyles();
 
   const [
-    { unsplashData, unsplashIsError, unsplashIsLoading },
-    setUrl
-  ] = Unsplash_PexelApi_Request();
-  const images = unsplashData;
+    { unsplashPhotos, unsplashIsError, unsplashIsLoading },
+
+    setUnsplashUrl
+  ] = Unsplash_Custom_Hook();
+  const images = unsplashPhotos;
+  console.log("images: ", images);
 
   React.useEffect(() => {
-    setUrl(
+    setUnsplashUrl(
       `https://api.unsplash.com/search/photos?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&page=1&query=bad+weather`
     );
     //eslint-disable-next-line
   }, []);
 
   //calling the random pics
-  if (typeof images.urls !== "undefined") {
-    shuffle(images.urls);
+  if (images !== null) {
+    shuffle(images);
   }
   return (
     <>
@@ -47,43 +49,39 @@ function WeatherPics() {
       ) : (
         <div>
           {images && (
-            <Grid container direction='row' justify='center'>
+            <Grid container direction='row'>
               <Grid
                 className={classes.gridList}
                 key={images[1].id}
                 item
-                xm={12}
-                sm={12}
+                xm={6}
+                sm={6}
                 md={6}
                 lg={6}
                 xl={6}
               >
                 <img
-                  loading='lazy'
                   className={classes.img}
-                  src={images[1].urls.raw + "&ar=3:4&fit=crop"}
+                  src={images[1].urls.regular}
                   alt={images[1].description}
                   width='100%'
-                  height='341'
                 />
               </Grid>
               <Grid
                 className={classes.gridList}
                 key={images[6].id}
                 item
-                xm={12}
-                sm={12}
+                xm={6}
+                sm={6}
                 md={6}
                 lg={6}
                 xl={6}
               >
                 <img
-                  loading='lazy'
                   className={classes.img}
-                  src={images[6].urls.raw + "&ar=3:4&fit=crop"}
+                  src={images[6].urls.regular}
                   alt={images[6].description}
                   width='100%'
-                  height='341'
                 />
               </Grid>
               <Grid
@@ -97,11 +95,9 @@ function WeatherPics() {
                 xl={12}
               >
                 <img
-                  loading='lazy'
-                  src={images[8].urls.raw}
+                  className={classes.img}
+                  src={images[8].urls.regular}
                   alt={images[8].description}
-                  width='100%'
-                  height='auto'
                 />
               </Grid>
             </Grid>

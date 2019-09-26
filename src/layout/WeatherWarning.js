@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import PexelApiRequest from "../Utils/Pexels_API_Request";
+import Unsplash_Custom_Hook from "../Utils/Unsplash_Custom_Hook";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "../css/weatherpicsCSS";
 import { shuffle } from "../Utils/Randomizer";
@@ -9,25 +9,26 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 function WeatherPics() {
   const classes = useStyles();
 
-  const [{ data, isError, isLoading }, setUrl] = PexelApiRequest();
-  const images = data;
+  const [
+    { unsplashPhotos, unsplashIsError, unsplashIsLoading },
+    setUnsplashUrl
+  ] = Unsplash_Custom_Hook();
+  const images = unsplashPhotos;
 
   React.useEffect(() => {
-    setUrl(
-      `https://api.unsplash.com/search/photos?client_id=${
-        process.env.REACT_APP_UNSPLASH_API_KEY
-      }&page=1&query=global+warming`
+    setUnsplashUrl(
+      `https://api.unsplash.com/search/photos?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&page=1&query=global+warming`
     );
     //eslint-disable-next-line
   }, []);
 
   // calling the random pics
-  if (typeof images.urls !== "undefined") {
-    shuffle(images.urls);
+  if (images !== null) {
+    shuffle(images);
   }
   return (
     <>
-      {isLoading ? (
+      {unsplashIsLoading ? (
         <Grid container direction='row' justify='center' alignItems='center'>
           <Grid item xm={12} sm={12} md={12} lg={12} xl={12}>
             <div style={{ display: "flex", height: "auto" }}>
@@ -35,7 +36,7 @@ function WeatherPics() {
             </div>
           </Grid>
         </Grid>
-      ) : isError ? (
+      ) : unsplashIsError ? (
         <Grid container direction='row' justify='center' alignItems='center'>
           <Grid item xm={12} sm={12} md={12} lg={12} xl={12}>
             <Typography variant='h4' gutterBottom align='center'>
@@ -67,7 +68,7 @@ function WeatherPics() {
                 />
               </Grid>
               <Grid
-                className={classes.gridList}
+                className={classes.gridList1}
                 key={images[4].id}
                 item
                 xm={12}
