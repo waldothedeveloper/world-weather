@@ -18,11 +18,10 @@ function WeatherCard() {
   const [
     { weatherData, weatherIsError, weatherIsLoading }
   ] = WeatherApiRequest();
-  // console.log("isError: ", isError);
+
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
-  // console.log("activeStep: ", activeStep);
   const [test, setTest] = useState(false);
 
   const dataReceived = weatherData;

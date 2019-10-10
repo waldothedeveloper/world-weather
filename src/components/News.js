@@ -1,5 +1,5 @@
 import React from "react";
-import Divider from "@material-ui/core/Divider";
+// import Divider from "@material-ui/core/Divider";
 import NewsApi_Request from "../Utils/NewsApi_Request";
 import Link from "@material-ui/core/Link";
 import Card from "@material-ui/core/Card";
@@ -8,15 +8,23 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import List from "@material-ui/core/List";
 import { useStyles } from "../css/newsCSS";
 import Grid from "@material-ui/core/Grid";
-
-// This resolves to nothing and doesn't affect browser history
-//eslint-disable-next-line
-const dudUrl = "javascript:;";
+import NewsCard from "./NewsCard";
 
 function News() {
   const classes = useStyles();
   const [{ data, isError, isLoading }] = NewsApi_Request();
+  const [innerWindow, setInnerWindow] = React.useState(0);
+
   // console.log("data: ", data);
+
+  React.useEffect(() => {
+    function updateSize() {
+      setInnerWindow(window.innerWidth);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  });
 
   return (
     <>
@@ -25,7 +33,7 @@ function News() {
           Weather News
         </Typography>
       </div>
-      <Divider className={classes.divide} variant='fullWidth' />
+      {/* <Divider className={classes.divide} variant='fullWidth' /> */}
       {isError ? (
         <Card className={classes.card}>
           <Typography component='h5' variant='h5'>
@@ -34,8 +42,10 @@ function News() {
         </Card>
       ) : isLoading ? (
         <div style={{ display: "flex", height: "auto" }}>
-          <CircularProgress style={{ margin: "auto" }} />
+          <CircularProgress style={{ margin: " 0 auto" }} />
         </div>
+      ) : innerWindow <= 600 ? (
+        <NewsCard data={data} />
       ) : (
         <List className={classes.root}>
           {data.map((article, id) => {
@@ -44,7 +54,7 @@ function News() {
                 className={classes.links}
                 href={article.url}
                 target='_blank'
-                rel='noreferrer prefetch'
+                rel='noreferrer '
                 key={id}
               >
                 <Grid
@@ -53,7 +63,7 @@ function News() {
                   direction='row'
                   justify='center'
                 >
-                  <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
+                  <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
                     <figure className={classes.imgWrapper}>
                       <img
                         loading='lazy'
@@ -72,7 +82,7 @@ function News() {
                     item
                     xs={12}
                     sm={12}
-                    md={4}
+                    md={12}
                     lg={4}
                     xl={4}
                     className={classes.contItem}
@@ -102,11 +112,11 @@ function News() {
                       {article.content}
                     </Typography>
                   </Grid>
-                  <Divider
+                  {/* <Divider
                     className={classes.divisor}
                     variant='inset'
                     component='li'
-                  />
+                  /> */}
                 </Grid>
               </Link>
             );

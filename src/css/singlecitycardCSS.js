@@ -3,7 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles(theme => ({
   wikiWrapper: {
-    padding: "1.6rem"
+    [theme.breakpoints.up("lg")]: {
+      padding: "0 14rem"
+    }
   },
 
   container: {
@@ -37,46 +39,47 @@ export const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("lg")]: {
       display: "flex",
       flexDirection: "column",
-      margin: "48px auto",
-      marginTop: 48
-      // background: `transparent url(${taieri}) top right no-repeat`,
-      // backgroundSize: "30% 40%"
+      margin: "48px auto"
+      // padding: "0 14rem"
     }
   },
   title: {
     [theme.breakpoints.down("sm")]: {
-      marginTop: "1.8rem",
-      padding: "1.6rem 1.6rem 0 1.6rem"
+      // marginTop: "1.8rem",
+      // padding: "1.6rem 1.6rem 0 1.6rem"
     },
     [theme.breakpoints.up("sm")]: {
-      marginTop: "1.8rem",
-      padding: "1.6rem 1.6rem 0 1.6rem"
+      // marginTop: "1.8rem",
+      // padding: "1.6rem 1.6rem 0 1.6rem"
     },
     [theme.breakpoints.up("md")]: {
-      marginTop: "2rem",
-      padding: "1.6rem 14rem 0 1.6rem"
+      // marginTop: "2rem",
+      // padding: "1.6rem 14rem 0 1.6rem"
     },
     [theme.breakpoints.up("lg")]: {
-      marginTop: "1.6rem 14rem 0 1.6rem"
-    }
+      fontSize: "270%"
+    },
+    padding: "0 2rem 0 2rem"
   },
   middleText: {
     [theme.breakpoints.down("sm")]: {
-      padding: "1.6rem 4rem 0 1.6rem"
+      // padding: "1.6rem 4rem 0 1.6rem"
     },
     [theme.breakpoints.up("sm")]: {
-      padding: "1.6rem 4rem 0 1.6rem"
+      // padding: "1.6rem 4rem 0 1.6rem"
     },
     [theme.breakpoints.up("md")]: {
-      padding: "1.6rem 24rem 0 1.6rem"
+      // padding: "1.6rem 24rem 0 1.6rem"
     },
     [theme.breakpoints.up("lg")]: {
-      padding: "1.6rem 34rem 0 1.6rem"
-    }
+      fontSize: "170%"
+    },
+    padding: "1rem 2rem 0 2rem",
+    opacity: 0.4
   },
   subtext: {
     [theme.breakpoints.down("sm")]: {
-      padding: "0.2rem 0 0.5rem 0 !important"
+      // padding: "0.2rem 0 0.5rem 0"
     },
     [theme.breakpoints.up("sm")]: {
       // padding: "0rem 14rem 2rem 14rem !important"
@@ -85,25 +88,25 @@ export const useStyles = makeStyles(theme => ({
       // padding: "0rem 14rem 0.8rem 14rem !important"
     },
     [theme.breakpoints.up("lg")]: {
-      // padding: "0rem 14rem 0.8rem 14rem !important"
-    }
+      fontSize: "150%"
+    },
+    padding: "0.5rem 2rem 0 2rem",
+    opacity: 0.8
   },
   iconsContainer: {
     [theme.breakpoints.down("sm")]: {
-      margin: "0.2rem 0",
-      padding: "0.4rem 0.4rem 0.4rem 1.6rem"
+      padding: "0 2rem 0 2rem"
     },
     [theme.breakpoints.up("sm")]: {
-      margin: "0.2rem 0",
-      padding: "0.6rem"
+      padding: "0 2rem 0 2rem"
     },
     [theme.breakpoints.up("md")]: {
-      margin: "1.4rem 0",
-      padding: "1rem"
+      margin: "1.4rem auto",
+      padding: "0 14rem"
     },
     [theme.breakpoints.up("lg")]: {
-      margin: "2.6rem 0",
-      padding: "1.6rem"
+      margin: "4rem auto",
+      padding: "0 18rem"
     },
     display: "flex",
     flexDirection: "row"
@@ -161,7 +164,11 @@ export const useStyles = makeStyles(theme => ({
     },
     margin: 0,
     padding: 0,
-    height: 520
+    height: 520,
+    "&:hover": {
+      opacity: 0.85,
+      transition: "opacity 0.4s ease-out"
+    }
   },
   imago: {
     width: "100%",

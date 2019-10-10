@@ -9,18 +9,18 @@ const useStyles = makeStyles(theme => ({
     //!TODO: need to follow this for every style
     // iphone 8plus & iphone xr
     [theme.breakpoints.down("sm")]: {
-      height: "155vh"
+      // height: "155vh"
+      height: "auto"
     },
     //ipad mini
     [theme.breakpoints.up("sm")]: {
-      height: "145vh"
-    },
-    [theme.breakpoints.up("md")]: {
       height: "120vh"
+      // height: "auto"
     },
     //laptop
     [theme.breakpoints.up("lg")]: {
       height: "160vh"
+      // height: "auto"
     },
     padding: "5rem 0 0 0",
     // background: "#b5cbe1",
@@ -32,7 +32,9 @@ const useStyles = makeStyles(theme => ({
     // iphone 8plus & iphone xr
     [theme.breakpoints.down("sm")]: {
       padding: "1.8rem",
-      marginTop: "-33vh"
+      // marginTop: "-33vh",
+      marginTop: "-15vh"
+      // transform: "translateY(-50%)"
     },
     //ipad mini
     [theme.breakpoints.up("sm")]: {

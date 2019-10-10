@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     },
     [theme.breakpoints.up("md")]: {
       padding: "2rem 14rem"
+    },
+    [`${theme.breakpoints.up("md")} and (orientation: landscape)`]: {
+      padding: "0.5rem"
     }
   }
 }));
@@ -28,7 +31,6 @@ function SectionD() {
         container
         direction='row-reverse'
         justify='center'
-        alignItems='center'
         className={classes.sectionDcontainer}
       >
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>

@@ -15,7 +15,7 @@ function WeatherPics() {
     setUnsplashUrl
   ] = Unsplash_Custom_Hook();
   const images = unsplashPhotos;
-  console.log("images: ", images);
+  // console.log("images: ", images);
 
   React.useEffect(() => {
     setUnsplashUrl(
@@ -49,7 +49,7 @@ function WeatherPics() {
       ) : (
         <div>
           {images && (
-            <Grid container direction='row'>
+            <Grid container>
               <Grid
                 className={classes.gridList}
                 key={images[1].id}

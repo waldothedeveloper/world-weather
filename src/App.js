@@ -23,9 +23,6 @@ function App() {
         <Route exact path='/' component={SectionC} />
         <Route exact path='/' component={SectionD} />
         <Route exact path='/' component={SectionE} />
-        {/* 
-    
-      <SectionE bottomNav={<BottomNav />} lastBottomNav={<LastBottomNav />} /> */}
       </React.Fragment>
     </Router>
   );

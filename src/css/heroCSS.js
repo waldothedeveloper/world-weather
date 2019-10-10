@@ -50,5 +50,10 @@ export const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("sm")]: {
       padding: "3.6rem"
     }
+  },
+  imageGridItem: {
+    [theme.breakpoints.down("sm")]: {
+      height: "80vh !important"
+    }
   }
 }));

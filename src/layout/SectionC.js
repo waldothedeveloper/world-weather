@@ -13,8 +13,16 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("sm")]: {
       height: "100vh"
     },
+    [theme.breakpoints.up("sm")]: {
+      height: "80vh"
+    },
+    [`${theme.breakpoints.up("sm")} and (orientation: landscape)`]: {
+      height: "115vh",
+      padding: "4rem"
+    },
     [theme.breakpoints.up("lg")]: {
-      padding: "100px 50px 280px 50px"
+      height: "145vh"
+      // padding: "100px 50px 280px 50px"
     },
     backgroundImage: "linear-gradient( to right, #27CDE8 10%, #3CA4EC 100%)",
     padding: 0,
@@ -30,9 +38,6 @@ const useStyles = makeStyles(theme => ({
     // margin: "-180px 0 180px 0"
   },
   gitem: {
-    [theme.breakpoints.up("lg")]: {
-      padding: "3.2rem"
-    },
     padding: 0
   }
 }));

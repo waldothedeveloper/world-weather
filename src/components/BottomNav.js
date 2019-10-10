@@ -15,7 +15,7 @@ export default function BottomNav() {
       alignItems='center'
     >
       <Grid
-        className={classes.grItem}
+        className={classes.grItemAbout}
         item
         xs={12}
         sm={12}
@@ -27,8 +27,19 @@ export default function BottomNav() {
           Weatherkast.
         </Typography>
         <Typography variant='body1' gutterBottom align='left'>
-          There are many variations of passages of Lorem Ipsum but the majority
-          have suffered. There are many variations of passages.
+          WeatherKast is a website developed and maintained by Waldo Lavaut.
+          <br />
+          To learn more about me please visit:{" "}
+          <a
+            href='https://www.waldothedeveloper.com'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            www.waldothedeveloper.com
+          </a>
+          <br />
+          Find your local weather in any city of USA. <br />
+          Copyright &copy; 2019 WeatherKast.
         </Typography>
       </Grid>
       <Grid

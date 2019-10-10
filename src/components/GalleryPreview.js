@@ -69,12 +69,7 @@ const GalleryPreview = () => {
   }, []);
 
   return (
-    <Grid
-      container
-      direction='row'
-      alignItems='center'
-      style={{ overflow: "hidden" }}
-    >
+    <Grid container alignItems='center' style={{ overflow: "hidden" }}>
       <Grid className={classes.root} item xs={12} sm={12} md={6} lg={6} xl={6}>
         <Typography align='center' variant='h4'>
           Weather in picture

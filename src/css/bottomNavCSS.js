@@ -11,10 +11,10 @@ export const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("md")]: {
       height: "100%",
       background: "#e7f1f7",
+      marginTop: "-4rem",
       paddingTop: "16rem",
-      paddingBottom: "1rem",
-      clipPath: "polygon(0 50%, 100% 20%, 100% 100%, 0% 100%)",
-      WebkitClipPath: "polygon(0 50%, 100% 20%, 100% 100%, 0% 100%)"
+      paddingBottom: "8rem",
+      WebkitClipPath: "polygon(0 30%, 100% 10%, 100% 100%, 0% 100%)"
     }
   },
   links: {
@@ -23,6 +23,14 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: "left",
     alignItems: "flex-start",
     height: "100%"
+  },
+  grItemAbout: {
+    [theme.breakpoints.down("sm")]: {
+      height: "100%",
+      padding: theme.spacing(2)
+    },
+    height: "128px",
+    padding: " 0 2rem"
   },
   grItem: {
     [theme.breakpoints.down("sm")]: {

@@ -7,6 +7,9 @@ import WeatherPics from "../layout/WeatherPics";
 
 const useStyles = makeStyles(theme => ({
   root: {
+    [theme.breakpoints.up("sm")]: {
+      padding: 50
+    },
     [theme.breakpoints.up("lg")]: {
       padding: 150
     },
@@ -17,13 +20,7 @@ const useStyles = makeStyles(theme => ({
 function SectionB(props) {
   const classes = useStyles();
   return (
-    <Grid
-      container
-      direction='row'
-      justify='center'
-      alignItems='center'
-      className={classes.root}
-    >
+    <Grid container direction='row' justify='center' className={classes.root}>
       <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
         <WeatherInfo
           weatherInfo1={weatherInfo1}

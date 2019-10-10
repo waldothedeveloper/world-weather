@@ -87,19 +87,19 @@ export default function SingleCityCard(props) {
           </Grid>
         </Grid>
       ) : (
-        <Grid container>
+        <Grid container className={classes.container}>
           <Grid
-            style={{ marginTop: "3rem" }}
             item
+            style={{ marginTop: "3rem" }}
             xs={12}
             sm={12}
             md={12}
-            lg={4}
-            xl={4}
+            lg={12}
+            xl={12}
           >
             {/* Wikipedia INFO */}
             <div className={classes.wikiWrapper}>
-              <Typography align='left' variant='h4'>
+              <Typography className={classes.title} align='left' variant='h4'>
                 {wikiArticle === null ? null : wikiArticle.displaytitle}
               </Typography>
               <Typography
@@ -109,7 +109,11 @@ export default function SingleCityCard(props) {
               >
                 {wikiArticle === null ? null : wikiArticle.description}
               </Typography>
-              <Typography align='left' variant='body1'>
+              <Typography
+                align='left'
+                variant='body1'
+                className={classes.middleText}
+              >
                 {wikiArticle === null ? null : wikiArticle.extract}
               </Typography>
             </div>
@@ -137,7 +141,8 @@ export default function SingleCityCard(props) {
                 >
                   {weatherData === null || weatherData.main === undefined
                     ? null
-                    : Number.parseInt(weatherData.main.temp)}
+                    : `${Number.parseInt(weatherData.main.temp)}`}{" "}
+                  &#8451;
                 </Typography>
               </Grid>
 
@@ -219,8 +224,8 @@ export default function SingleCityCard(props) {
             xs={12}
             sm={12}
             md={12}
-            lg={8}
-            xl={8}
+            lg={12}
+            xl={12}
           >
             {/* IMAGES */}
             <figure className={classes.fig}>
@@ -240,42 +245,3 @@ export default function SingleCityCard(props) {
     </>
   );
 }
-
-// `&auto=format&h=350&w=${document.body.offsetWidth}&crop=edges&fit=crop`
-
-// <Grid container className={classes.container}>
-//   <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-//     <Typography className={classes.cityTitle} variant='h2' align='left'>
-//       {wikiArticle === null ? null : wikiArticle.displaytitle}
-//     </Typography>
-//     <Typography
-//       className={classes.cityTitle}
-//       variant='body1'
-//       align='left'
-//     >
-//       {wikiArticle === null ? null : wikiArticle.extract}
-//     </Typography>
-//   </Grid>
-/* <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-            <figure style={{ margin: 0, padding: 0, background: "#333" }}>
-              <img
-                className={classes.imgago}
-                src={
-                  unsplashPhotos === null
-                    ? null
-                    : unsplashPhotos[randNumber].urls.raw +
-                      `&w=${document.body.offsetWidth}&crop=facearea&fit=crop`
-                }
-                alt={wikiArticle === null ? "" : wikiArticle.displaytitle}
-              />
-            </figure>
-            <Typography
-              className={classes.cityTitle}
-              variant='h4'
-              align='center'
-              noWrap={true}
-            >
-              {wikiArticle === null ? null : wikiArticle.displaytitle}
-            </Typography>
-          </Grid> */
-// </Grid>

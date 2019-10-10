@@ -12,11 +12,12 @@ export const useStyles = makeStyles(theme => ({
       fontSize: "1.5rem"
     },
     fontWeight: 900,
-    paddingBottom: "0.35em"
+    paddingBottom: "0.35em",
+    height: 65
   },
   card: {
     [theme.breakpoints.down("sm")]: {
-      height: 280
+      height: 285
     },
     display: "flex",
     flexWrap: "wrap",

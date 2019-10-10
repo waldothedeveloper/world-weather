@@ -14,6 +14,9 @@ export const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("sm")]: {
       margin: "-6rem 0 2rem 0"
     },
+    [theme.breakpoints.up("md")]: {
+      margin: "-6rem 0 6rem 0"
+    },
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",

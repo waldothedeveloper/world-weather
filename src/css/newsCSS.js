@@ -2,10 +2,18 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles(theme => ({
   root: {
+    [theme.breakpoints.up("sm")]: {
+      padding: "0 6rem",
+      maxHeight: 580
+    },
+    [theme.breakpoints.up("lg")]: {
+      padding: 0
+    },
     marginTop: "2rem",
     position: "relative",
     overflow: "auto",
-    maxHeight: 450
+    maxHeight: 450,
+    background: "#052337"
   },
 
   cont: {
@@ -17,7 +25,8 @@ export const useStyles = makeStyles(theme => ({
   contItem: {
     [theme.breakpoints.down("sm")]: {
       padding: "0.6rem"
-    }
+    },
+    padding: "1.5rem"
   },
   card: {
     display: "flex",
