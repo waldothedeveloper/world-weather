@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   // backgroundImage: "linear-gradient( 135deg, #000428 0.8%, #004e92 100%)",
   root: {
     [theme.breakpoints.down("sm")]: {
-      height: "100vh"
+      height: "120vh"
     },
     [theme.breakpoints.up("sm")]: {
       height: "80vh"

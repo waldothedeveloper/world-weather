@@ -37,11 +37,17 @@ export const Autocomplete = ({
   currentRefinement,
   hits,
   searchingWidth,
-  allDataFromAllApis
+  setMediumDevicesHeightElem
 }) => {
   const classes = useStyles();
 
-  // console.log("allDataFromAllApis:", allDataFromAllApis);
+  React.useEffect(() => {
+    const searchHeightElem =
+      document.getElementById("search-city-results") &&
+      document.getElementById("search-city-results").offsetHeight;
+
+    setMediumDevicesHeightElem(searchHeightElem);
+  });
 
   const reducer = (state, action) => {
     //! TODO: need to find implementation for mobile with the length of the cities
@@ -52,9 +58,6 @@ export const Autocomplete = ({
         width: searchingWidth,
         maxWidth: searchingWidth,
         margin: "auto"
-        //check what solution to implement on mobile, this below does not work
-        // height: 350
-        // overflow: "scroll"
       };
     }
 
@@ -102,7 +105,7 @@ export const Autocomplete = ({
     );
   } else {
     return (
-      <List style={searchWidth}>
+      <List id='search-city-results' style={searchWidth}>
         {hits.map(hit => (
           <ListItem button key={hit.objectID}>
             <Link

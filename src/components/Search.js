@@ -19,7 +19,7 @@ const searchClient = algoliasearch(
 // This is the pride colors as a gradient but I like it, doesn't look bad
 // linear-gradient(to right,#DF4998,#39BDB1,#00a9e5,#fed10a)
 
-function Search() {
+function Search({ setMediumDevicesHeightElem }) {
   const classes = useStyles();
 
   return (
@@ -27,7 +27,10 @@ function Search() {
       <InstantSearch searchClient={searchClient} indexName='us_cities'>
         <div className={classes.aisSearch}>
           {/* This is the list of hits coming from Algolia */}
-          <HOCautoCompleted defaultRefinement='' />
+          <HOCautoCompleted
+            setMediumDevicesHeightElem={setMediumDevicesHeightElem}
+            defaultRefinement=''
+          />
         </div>
       </InstantSearch>
     </>

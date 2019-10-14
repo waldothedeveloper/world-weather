@@ -7,7 +7,11 @@ function WeatherInfo(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Typography variant='h3' gutterBottom style={{ fontWeight: 700 }}>
+      <Typography
+        variant='h3'
+        gutterBottom
+        className={classes.weatherInfoTitle}
+      >
         {props.weatherInfo1}
         <br />
         {props.weatherInfo2}

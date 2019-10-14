@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles(theme => ({
   root: {
     [theme.breakpoints.down("sm")]: {
-      padding: "6rem 1.5rem 4rem 1.5rem"
+      padding: "6rem 1rem 4rem 1rem"
     },
     //ipad mini
     [theme.breakpoints.up("sm")]: {
@@ -33,6 +33,22 @@ export const useStyles = makeStyles(theme => ({
     "&:hover": {
       backgroundPosition: "right center",
       backgroundColor: "#333333"
+    }
+  },
+  weatherInfoTitle: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "84%"
+    },
+    //ipad mini
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "86%"
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "128%"
+    },
+    //laptop
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "160%"
     }
   }
 }));

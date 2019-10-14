@@ -53,7 +53,13 @@ export const useStyles = makeStyles(theme => ({
   },
   imageGridItem: {
     [theme.breakpoints.down("sm")]: {
-      height: "80vh !important"
+      height: "63vh"
+    },
+    [theme.breakpoints.up("sm")]: {
+      height: "63vh"
+    },
+    [theme.breakpoints.up("md")]: {
+      height: "100%"
     }
   }
 }));
